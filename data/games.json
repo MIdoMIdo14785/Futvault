@@ -33,118 +33,6 @@
   },
 
   {
-    "sku": "GHOST-YOTEI",
-    "title": "Ghost Of Yotei",
-    "keywords": ["ghost", "yotei", "ghost of yotei"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/ghost-yotei.png"
-  },
-
-  {
-    "sku": "CALL-OF-DUTY-7",
-    "title": "Call of Duty 7",
-    "keywords": ["cod7", "call of duty 7", "call of duty"],
-    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
-    "image": "assets/cod7.png"
-  },
-
-  {
-    "sku": "BATTLEFIELD-6",
-    "title": "Battlefield 6",
-    "keywords": ["battlefield", "bf6", "battlefield 6"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/battlefield6.png"
-  },
-
-  {
-    "sku": "BLACK-MYTH-WUKONG",
-    "title": "Black Myth: Wukong",
-    "keywords": ["black myth", "wukong", "black myth wukong"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/black-myth-wukong.png"
-  },
-
-  {
-    "sku": "MGS-DELTA",
-    "title": "Metal Gear Solid Delta: Snake Eater",
-    "keywords": ["metal gear", "mgs delta", "snake eater"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/mgs-delta.png"
-  },
-
-  {
-    "sku": "ASSASSIN-LEGACY",
-    "title": "Assassin's Creed Legendary Collection",
-    "keywords": ["assassin's creed", "legendary collection"],
-    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
-    "image": "assets/assassin-legacy.png"
-  },
-
-  {
-    "sku": "FORZA-HORIZON-5",
-    "title": "Forza Horizon 5",
-    "keywords": ["forza", "forza horizon 5", "fh5"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/forza5.png"
-  },
-
-  {
-    "sku": "THE-LAST-OF-US-1",
-    "title": "The Last of Us Part I",
-    "keywords": ["the last of us", "tlou1", "last of us part 1"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/tlou1.png"
-  },
-
-  {
-    "sku": "THE-LAST-OF-US-2",
-    "title": "The Last of Us Part II",
-    "keywords": ["tlou2", "the last of us 2", "last of us part 2"],
-    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
-    "image": "assets/tlou2.png"
-  },
-
-  {
-    "sku": "ARC-RAIDERS",
-    "title": "Arc Raiders",
-    "keywords": ["arc raiders", "arc"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/arc-raiders.png"
-  },
-
-  {
-    "sku": "ASSASSIN-SHADOWS",
-    "title": "Assassin's Creed Shadows",
-    "keywords": ["assassin shadows", "ac shadows"],
-    "prices": { "ps5": { "primary": "", "secondary": "" } },
-    "image": "assets/assassin-shadows.png"
-  },
-
-  {
-    "sku": "GHOST-TSUSHIMA",
-    "title": "Ghost Of Tsushima",
-    "keywords": ["ghost tsushima", "tsushima"],
-    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
-    "image": "assets/ghost-tsushima.png"
-  },
-
-  {
-    "sku": "HOLLOW-SILKSONG",
-    "title": "Hollow Knight: Silksong",
-    "keywords": ["hollow knight", "silksong"],
-    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
-    "image": "assets/hollow-silksong.png"
-  },
-
-  {
-    "sku": "MAFIA-TRILOGY",
-    "title": "Mafia Trilogy",
-    "keywords": ["mafia trilogy", "mafia"],
-    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
-    "image": "assets/mafia-trilogy.png"
-  },
-
-  {
     "sku": "GTA5",
     "title": "GTA V",
     "keywords": ["gta", "gta5", "grand theft auto", "rockstar"],
@@ -166,5 +54,94 @@
     "keywords": ["elden", "elden ring", "fromsoftware"],
     "prices": { "ps5": { "primary": "220 DHS", "secondary": "170 DHS" }, "ps4": { "primary": "200 DHS" } },
     "image": "assets/eldenring.png"
+  },
+
+  {
+    "sku": "GHOST-YOTEI",
+    "title": "Ghost Of Yotei",
+    "keywords": ["ghost", "yotei", "ghost of yotei"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/ghost-yotei.png"
+  },
+
+  {
+    "sku": "BATTLEFIELD-6",
+    "title": "Battlefield 6",
+    "keywords": ["battlefield", "bf6", "battlefield 6"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/battlefield6.png"
+  },
+
+  {
+    "sku": "BLACK-MYTH-WUKONG",
+    "title": "Black Myth: Wukong",
+    "keywords": ["black myth", "wukong", "black myth wukong"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/black-myth-wukong.png"
+  },
+
+  {
+    "sku": "MGS-DELTA",
+    "title": "Metal Gear Solid Delta: Snake Eater",
+    "keywords": ["metal gear", "mgs delta", "snake eater"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/mgs-delta.png"
+  },
+
+  {
+    "sku": "FORZA-HORIZON-5",
+    "title": "Forza Horizon 5",
+    "keywords": ["forza", "forza horizon 5", "fh5"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/forza5.png"
+  },
+
+  {
+    "sku": "THE-LAST-OF-US-1",
+    "title": "The Last of Us Part I",
+    "keywords": ["the last of us", "tlou1", "last of us part 1"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/tlou1.png"
+  },
+
+  {
+    "sku": "ARC-RAIDERS",
+    "title": "Arc Raiders",
+    "keywords": ["arc raiders", "arc"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/arc-raiders.png"
+  },
+
+  {
+    "sku": "ASSASSIN-SHADOWS",
+    "title": "Assassin's Creed Shadows",
+    "keywords": ["assassin shadows", "ac shadows"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" } },
+    "image": "assets/assassin-shadows.png"
+  },
+
+  {
+    "sku": "GHOST-TSUSHIMA",
+    "title": "Ghost Of Tsushima",
+    "keywords": ["ghost tsushima", "tsushima"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" }, "ps4": { "primary": "—" } },
+    "image": "assets/ghost-tsushima.png"
+  },
+
+  {
+    "sku": "HOLLOW-SILKSONG",
+    "title": "Hollow Knight: Silksong",
+    "keywords": ["hollow knight", "silksong"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" }, "ps4": { "primary": "—" } },
+    "image": "assets/hollow-silksong.png"
+  },
+
+  {
+    "sku": "MAFIA-TRILOGY",
+    "title": "Mafia Trilogy",
+    "keywords": ["mafia trilogy", "mafia"],
+    "prices": { "ps5": { "primary": "—", "secondary": "" }, "ps4": { "primary": "—" } },
+    "image": "assets/mafia-trilogy.png"
   }
+
 ]
