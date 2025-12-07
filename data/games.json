@@ -3,8 +3,13 @@
     "sku": "FC26",
     "title": "EA SPORTS FC 26",
     "prices": {
-      "ps5": { "primary": "250 DHS", "secondary": "200 DHS" },
-      "ps4": { "primary": "200 DHS" }
+      "ps5": { 
+        "primary": "250 DHS", 
+        "secondary": "200 DHS" 
+      },
+      "ps4": { 
+        "primary": "200 DHS" 
+      }
     },
     "image": "assets/fc26.png"
   },
@@ -13,8 +18,13 @@
     "sku": "GTA5",
     "title": "GTA V",
     "prices": {
-      "ps5": { "primary": "", "secondary": "" },
-      "ps4": { "primary": "150 DHS" }
+      "ps5": { 
+        "primary": "", 
+        "secondary": "" 
+      },
+      "ps4": { 
+        "primary": "150 DHS" 
+      }
     },
     "image": "assets/gta5.png"
   },
@@ -23,8 +33,13 @@
     "sku": "RDR2",
     "title": "Red Dead Redemption 2",
     "prices": {
-      "ps5": { "primary": "", "secondary": "" },
-      "ps4": { "primary": "180 DHS" }
+      "ps5": { 
+        "primary": "", 
+        "secondary": "" 
+      },
+      "ps4": { 
+        "primary": "180 DHS" 
+      }
     },
     "image": "assets/rdr2.png"
   },
@@ -33,8 +48,13 @@
     "sku": "ELDEN",
     "title": "Elden Ring",
     "prices": {
-      "ps5": { "primary": "220 DHS", "secondary": "170 DHS" },
-      "ps4": { "primary": "" }
+      "ps5": { 
+        "primary": "220 DHS", 
+        "secondary": "170 DHS" 
+      },
+      "ps4": { 
+        "primary": "" 
+      }
     },
     "image": "assets/elden.png"
   }
