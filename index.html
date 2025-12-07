@@ -86,7 +86,7 @@
   let data = [], duration = '12m'; // default: show 12m prices
   // load JSON
   try{
-    const res = await fetch('/data/games.json', {cache: "no-store"});
+    const res = await fetch('data/games.json', {cache: "no-store"});
     if(!res.ok) throw new Error('JSON fetch failed: ' + res.status);
     data = await res.json();
   } catch(e){
