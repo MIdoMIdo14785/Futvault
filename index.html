@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FUTVault — Price List</title>
+  <style>
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:0; padding:20px; background:#f4f6fb; color:#111; }
+    .container { max-width:980px; margin:0 auto; }
+    header { margin-bottom:14px; }
+    h1 { margin:0; font-size:22px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:14px; }
+    .card { background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    .cover { width:100%; height:300px; object-fit:cover; display:block; background:#ddd; }
+    .card-body { padding:12px; }
+    .title { font-weight:700; margin-bottom:6px; }
+    .meta { color:#666; font-size:13px; margin-bottom:8px; }
+    .price { font-weight:800; font-size:16px; }
+    .stock-low { color:#b91c1c; font-weight:700; }
+    .btn { margin-top:8px; display:inline-block; padding:8px 10px; border-radius:6px; background:#0b74ff; color:#fff; text-decoration:none; }
+    @media (max-width:600px){ .cover { height:220px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>FUTVault — Price list</h1>
+      <div style="color:#555;margin-top:6px">Prices updated manually. Copy the page link to share with customers.</div>
+    </header>
+
+    <div id="grid" class="grid" aria-live="polite">
+      <!-- items injected by JS -->
+    </div>
+  </div>
+
+<script>
+fetch('data/games.json', {cache: 'no-store'}).then(r => r.json()).then(data => {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = data.map(g => {
+    const stockClass = (g.stock !== undefined && !isNaN(Number(g.stock)) && Number(g.stock) <= 2) ? 'stock-low' : '';
+    const link = g.link ? `<a class="btn" href="${g.link}" target="_blank" rel="noopener">Details</a>` : '';
+    return `<div class="card">
+      <img class="cover" src="${g.image}" alt="${g.title} cover" />
+      <div class="card-body">
+        <div class="title">${g.title}</div>
+        <div class="meta">${g.platform} · ${g.sku || ''}</div>
+        <div class="price">${g.price}</div>
+        <div class="${stockClass}">Stock: ${g.stock}</div>
+        ${link}
+      </div>
+    </div>`;
+  }).join('');
+}).catch(err => {
+  document.getElementById('grid').innerHTML = '<div style="color:#b91c1c">Error loading data: ' + err.message + '</div>';
+});
+</script>
+</body>
+</html>
