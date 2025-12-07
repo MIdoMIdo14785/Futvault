@@ -146,4 +146,69 @@
     "image": "assets/forza5-1200.webp",
     "platforms": {
       "ps5": { "principal": 230, "secondaire": "-" },
-      "ps4": { "principal": 2
+      "ps4": { "principal": 200, "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "tlou1",
+    "name": "The Last of Us Part I",
+    "category": "game",
+    "image": "assets/tlou1-1200.webp",
+    "platforms": {
+      "ps5": { "principal": 260, "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "tlou2",
+    "name": "The Last of Us Part II",
+    "category": "game",
+    "image": "assets/tlou2-1200.webp",
+    "platforms": {
+      "ps5": { "principal": 240, "secondaire": "-" },
+      "ps4": { "principal": 200, "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "arcraiders",
+    "name": "Arc Raiders",
+    "category": "game",
+    "image": "assets/arc-raiders-1200.webp",
+    "platforms": {
+      "ps5": { "principal": 210, "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "acshadows",
+    "name": "Assassin's Creed Shadows",
+    "category": "game",
+    "image": "assets/ac-shadows-1200.webp",
+    "platforms": {
+      "ps5": { "principal": 320, "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "hollowknight",
+    "name": "Hollow Knight: Silksong",
+    "category": "game",
+    "image": "assets/hollowknight-1200.webp",
+    "platforms": {
+      "ps5": { "principal": 180, "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "mafiatrilogy",
+    "name": "Mafia Trilogy",
+    "category": "game",
+    "image": "assets/mafiatrilogy-1200.webp",
+    "platforms": {
+      "ps5": { "principal": 270, "secondaire": "-" },
+      "ps4": { "principal": 230, "secondaire": "-" }
+    }
+  }
+]
