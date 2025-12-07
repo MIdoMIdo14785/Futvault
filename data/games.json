@@ -6,11 +6,11 @@
     "prices": {
       "ps5": {
         "terms": {
-          "6m": { "primary": "140 DHS", "secondary": "—" },
-          "12m": { "primary": "250 DHS", "secondary": "—" }
+          "6m": { "primary": "500 DHS", "secondary": "100 DHS" },
+          "12m": { "primary": "500 DHS", "secondary": "100 DHS" }
         }
       },
-      "ps4": { "primary": "—" }
+      "ps4": { "primary": "250 DHS" }
     },
     "image": "assets/psplus-essential",
     "priority": 6
@@ -47,7 +47,6 @@
     "image": "assets/psplus-premium",
     "priority": 6
   },
-
   {
     "sku": "FC26",
     "title": "EA SPORTS FC 26",
@@ -59,7 +58,6 @@
     "image": "assets/fc26",
     "priority": 5
   },
-
   {
     "sku": "GTA5",
     "title": "GTA V",
@@ -71,7 +69,6 @@
     "image": "assets/gta5",
     "priority": 5
   },
-
   {
     "sku": "RDR2",
     "title": "Red Dead Redemption 2",
@@ -83,7 +80,6 @@
     "image": "assets/rdr2",
     "priority": 5
   },
-
   {
     "sku": "ELDEN",
     "title": "Elden Ring",
@@ -95,7 +91,6 @@
     "image": "assets/eldenring",
     "priority": 5
   },
-
   {
     "sku": "GHOST-YOTEI",
     "title": "Ghost Of Yotei",
@@ -106,7 +101,6 @@
     "image": "assets/ghost-yotei",
     "priority": 4
   },
-
   {
     "sku": "CALL-OF-DUTY-7",
     "title": "Call of Duty 7",
@@ -118,7 +112,6 @@
     "image": "assets/cod7",
     "priority": 3
   },
-
   {
     "sku": "BATTLEFIELD-6",
     "title": "Battlefield 6",
@@ -129,7 +122,6 @@
     "image": "assets/battlefield6",
     "priority": 4
   },
-
   {
     "sku": "BLACK-MYTH-WUKONG",
     "title": "Black Myth: Wukong",
@@ -140,7 +132,6 @@
     "image": "assets/black-myth-wukong",
     "priority": 4
   },
-
   {
     "sku": "MGS-DELTA",
     "title": "Metal Gear Solid Delta: Snake Eater",
@@ -151,7 +142,6 @@
     "image": "assets/mgs-delta",
     "priority": 4
   },
-
   {
     "sku": "ASSASSIN-LEGACY",
     "title": "Assassin's Creed Legendary Collection",
@@ -163,7 +153,6 @@
     "image": "assets/assassin-legacy",
     "priority": 3
   },
-
   {
     "sku": "FORZA-HORIZON-5",
     "title": "Forza Horizon 5",
@@ -174,7 +163,6 @@
     "image": "assets/forza5",
     "priority": 4
   },
-
   {
     "sku": "THE-LAST-OF-US-1",
     "title": "The Last of Us Part I",
@@ -185,7 +173,6 @@
     "image": "assets/tlou1",
     "priority": 4
   },
-
   {
     "sku": "THE-LAST-OF-US-2",
     "title": "The Last of Us Part II",
@@ -197,7 +184,6 @@
     "image": "assets/tlou2",
     "priority": 3
   },
-
   {
     "sku": "ARC-RAIDERS",
     "title": "Arc Raiders",
@@ -208,7 +194,6 @@
     "image": "assets/arc-raiders",
     "priority": 4
   },
-
   {
     "sku": "ASSASSIN-SHADOWS",
     "title": "Assassin's Creed Shadows",
@@ -219,7 +204,6 @@
     "image": "assets/assassin-shadows",
     "priority": 4
   },
-
   {
     "sku": "GHOST-TSUSHIMA",
     "title": "Ghost Of Tsushima",
@@ -231,7 +215,6 @@
     "image": "assets/ghost-tsushima",
     "priority": 3
   },
-
   {
     "sku": "HOLLOW-SILKSONG",
     "title": "Hollow Knight: Silksong",
@@ -243,7 +226,6 @@
     "image": "assets/hollow-silksong",
     "priority": 3
   },
-
   {
     "sku": "MAFIA-TRILOGY",
     "title": "Mafia Trilogy",
