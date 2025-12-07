@@ -7,26 +7,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg1:#dfe6e9; --bg2:#b2bec3; --muted:#2d3436;
-    --primary-color:#9ecbff; --secondary-color:#cfeee6;
-    --card:#ffffff; --text:#2d3436;
+    --bg1:#dfe6e9;
+    --bg2:#b2bec3;
+    --muted:#2d3436;
+    --primary-color:#9ecbff;
+    --secondary-color:#cfeee6;
+    --card:#ffffff;
+    --text:#2d3436;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,system-ui,Roboto,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text)}
+  body{
+    margin:0;font-family:Inter,system-ui,Roboto,Arial;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:var(--text);
+  }
   .wrap{max-width:1100px;margin:28px auto;padding:18px}
   header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-  .logo{width:68px;height:68px;border-radius:12px;overflow:hidden}
-  .logo img{width:100%;height:100%;object-fit:cover}
-  h1{margin:0;font-size:20px} .lead{color:var(--muted);font-size:13px;margin-top:4px}
+  .logo{width:72px;height:72px;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .logo img{width:56px;height:56px;object-fit:contain;padding:4px;display:block}
+  h1{margin:0;font-size:20px}
+  /* removed lead (catalogue professionnel) as requested */
+
   .controls{display:flex;gap:10px;margin:18px 0;align-items:center}
   .search{flex:1;padding:12px;border-radius:10px;border:1px solid #ccc;background:white;color:#2d3436}
   .search::placeholder{color:#777}
   .select{padding:10px;border-radius:10px;background:white;border:1px solid #aaa;color:#2d3436}
+
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:8px}
   .card{background:var(--card);border-radius:14px;overflow:visible;box-shadow:0 10px 25px rgba(0,0,0,0.15);display:flex;flex-direction:column}
   .cover{width:100%;height:340px;display:flex;align-items:center;justify-content:center;background:#ffffff;padding:14px;border-bottom:1px solid #eee;border-top-left-radius:14px;border-top-right-radius:14px}
   .cover img{max-width:100%;max-height:100%;object-fit:contain;border-radius:18px;box-shadow:0 6px 18px rgba(0,0,0,0.08);background:#f8f9fb}
-  .card-body{padding:14px} .title{font-weight:800;font-size:15px;margin:6px 0 0;color:var(--text)}
+  .card-body{padding:14px}
+  .title{font-weight:800;font-size:15px;margin:6px 0 0;color:var(--text)}
   .prices-row{display:flex;gap:18px;padding:12px;justify-content:space-between}
   .box{background:#f1f2f6;border-radius:12px;padding:16px 22px;display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid #dcdde1}
   .box.half{width:48%}
@@ -48,19 +60,21 @@
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="logo"><img src="assets/logo.png" alt="logo"></div>
-    <div><h1>FUTVault — Price list</h1><div class="lead">Catalogue professionnel</div></div>
-  </header>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="assets/logo.png" alt="FUTVault logo"></div>
+      <div>
+        <h1>FUTVault — Price list</h1>
+      </div>
+    </header>
 
-  <div class="controls">
-    <input id="q" class="search" placeholder="Rechercher (titre, SKU, keywords)..." />
-    <select id="platform" class="select"><option value="">Toutes plateformes</option></select>
+    <div class="controls">
+      <input id="q" class="search" placeholder="Rechercher (titre, SKU, keywords)..." />
+      <select id="platform" class="select"><option value="">Toutes plateformes</option></select>
+    </div>
+
+    <div id="grid" class="grid"></div>
   </div>
-
-  <div id="grid" class="grid"></div>
-</div>
 
 <script>
 const DATA_URL='data/games.json';
@@ -106,6 +120,7 @@ function render(){
   const pf=document.getElementById('platform').value;
   const grid=document.getElementById('grid');
 
+  // filter
   let rows = data.filter(g=>{
     if(!matchesPlatform(g,pf)) return false;
     if(!q) return true;
@@ -113,7 +128,23 @@ function render(){
     return tokens.every(t => (g._search && g._search.includes(t)));
   });
 
+  // sort by priority so PS+ slots appear first (higher priority)
   rows.sort((a,b)=>(b.priority||0)-(a.priority||0));
+
+  // ensure custom order requested by Mouad:
+  // desired sequence: PS+ Essential, PS+ Extra, PS+ Premium, FC26, GTA5, RDR2, ELDEN, GHOST-YOTEI, then the rest in the JSON order
+  const order = ["PSPLUS-ESSENTIAL","PSPLUS-EXTRA","PSPLUS-PREMIUM","FC26","GTA5","RDR2","ELDEN","GHOST-YOTEI"];
+  rows.sort((a,b)=>{
+    const ia = order.indexOf(a.sku);
+    const ib = order.indexOf(b.sku);
+    if(ia!==-1 || ib!==-1){
+      if(ia===-1) return 1;
+      if(ib===-1) return -1;
+      return ia-ib;
+    }
+    // otherwise keep priority sort defined above (already applied), and preserve relative order
+    return 0;
+  });
 
   if(!rows.length){ grid.innerHTML = '<div style="color:#636e72">Aucun résultat</div>'; return; }
 
@@ -124,10 +155,8 @@ function render(){
     const ps4Pri = hasPS4 ? (r.prices.ps4.primary || '—') : '';
     const img = r.image || 'assets/placeholder.png';
 
-    // decide classes: if no PS4 -> PS5 box full width and centered, else both half width
     const ps5BoxClass = hasPS4 ? 'box half' : 'box full';
 
-    // render PS4 box only if hasPS4
     const ps4Html = hasPS4 ? `
       <div class="box half">
         <div class="platform">PS4</div>
@@ -139,8 +168,7 @@ function render(){
         </div>
       </div>` : '';
 
-    // PS5 secondary: show only if non-empty; if empty still show placeholder
-    const ps5SecondaryHtml = (ps5Sec && ps5Sec.trim()!=='') ? `
+    const ps5SecondaryHtml = (ps5Sec && ps5Sec.toString().trim()!=='') ? `
       <div class="price-with-label">
         <div class="badge secondary">${escapeHtml(ps5Sec)}</div>
         <div class="price-label-under">Secondaire</div>
