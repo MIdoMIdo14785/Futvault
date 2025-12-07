@@ -12,7 +12,7 @@
       },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/psplus-essential.png",
+    "image": "assets/psplus-essential",
     "priority": 6
   },
   {
@@ -28,7 +28,7 @@
       },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/psplus-extra.png",
+    "image": "assets/psplus-extra",
     "priority": 6
   },
   {
@@ -44,7 +44,7 @@
       },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/psplus-premium.png",
+    "image": "assets/psplus-premium",
     "priority": 6
   },
 
@@ -56,7 +56,7 @@
       "ps5": { "primary": "250 DHS", "secondary": "200 DHS" },
       "ps4": { "primary": "200 DHS" }
     },
-    "image": "assets/fc26.png",
+    "image": "assets/fc26",
     "priority": 5
   },
 
@@ -68,7 +68,7 @@
       "ps5": { "primary": "150 DHS", "secondary": "100 DHS" },
       "ps4": { "primary": "120 DHS" }
     },
-    "image": "assets/gta5.png",
+    "image": "assets/gta5",
     "priority": 5
   },
 
@@ -80,7 +80,7 @@
       "ps5": { "primary": "200 DHS", "secondary": "150 DHS" },
       "ps4": { "primary": "180 DHS" }
     },
-    "image": "assets/rdr2.png",
+    "image": "assets/rdr2",
     "priority": 5
   },
 
@@ -92,7 +92,7 @@
       "ps5": { "primary": "220 DHS", "secondary": "170 DHS" },
       "ps4": { "primary": "200 DHS" }
     },
-    "image": "assets/eldenring.png",
+    "image": "assets/eldenring",
     "priority": 5
   },
 
@@ -103,7 +103,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/ghost-yotei.png",
+    "image": "assets/ghost-yotei",
     "priority": 4
   },
 
@@ -115,7 +115,7 @@
       "ps5": { "primary": "—", "secondary": "—" },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/cod7.png",
+    "image": "assets/cod7",
     "priority": 3
   },
 
@@ -126,7 +126,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/battlefield6.png",
+    "image": "assets/battlefield6",
     "priority": 4
   },
 
@@ -137,7 +137,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/black-myth-wukong.png",
+    "image": "assets/black-myth-wukong",
     "priority": 4
   },
 
@@ -148,7 +148,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/mgs-delta.png",
+    "image": "assets/mgs-delta",
     "priority": 4
   },
 
@@ -160,7 +160,7 @@
       "ps5": { "primary": "—", "secondary": "—" },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/assassin-legacy.png",
+    "image": "assets/assassin-legacy",
     "priority": 3
   },
 
@@ -171,7 +171,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/forza5.png",
+    "image": "assets/forza5",
     "priority": 4
   },
 
@@ -182,7 +182,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/tlou1.png",
+    "image": "assets/tlou1",
     "priority": 4
   },
 
@@ -194,7 +194,7 @@
       "ps5": { "primary": "—", "secondary": "—" },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/tlou2.png",
+    "image": "assets/tlou2",
     "priority": 3
   },
 
@@ -205,7 +205,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/arc-raiders.png",
+    "image": "assets/arc-raiders",
     "priority": 4
   },
 
@@ -216,7 +216,7 @@
     "prices": {
       "ps5": { "primary": "—", "secondary": "—" }
     },
-    "image": "assets/assassin-shadows.png",
+    "image": "assets/assassin-shadows",
     "priority": 4
   },
 
@@ -228,7 +228,7 @@
       "ps5": { "primary": "—", "secondary": "—" },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/ghost-tsushima.png",
+    "image": "assets/ghost-tsushima",
     "priority": 3
   },
 
@@ -240,7 +240,7 @@
       "ps5": { "primary": "—", "secondary": "—" },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/hollow-silksong.png",
+    "image": "assets/hollow-silksong",
     "priority": 3
   },
 
@@ -252,7 +252,7 @@
       "ps5": { "primary": "—", "secondary": "—" },
       "ps4": { "primary": "—" }
     },
-    "image": "assets/mafia-trilogy.png",
+    "image": "assets/mafia-trilogy",
     "priority": 3
   }
 ]
