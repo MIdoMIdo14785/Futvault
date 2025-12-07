@@ -4,8 +4,8 @@
     "title": "PS+ Essential",
     "keywords": ["ps+", "essential", "ps plus essential"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "500 DHS", "secondary": "100 DHS" },
+      "ps4": { "primary": "250 DHS" }
     },
     "image": "assets/psplus-essential.png",
     "priority": 5
@@ -15,8 +15,8 @@
     "title": "PS+ Extra",
     "keywords": ["ps+", "extra", "ps plus extra"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "750 DHS", "secondary": "400 DHS" },
+      "ps4": { "primary": "350 DHS" }
     },
     "image": "assets/psplus-extra.png",
     "priority": 5
@@ -26,8 +26,8 @@
     "title": "PS+ Premium",
     "keywords": ["ps+", "premium", "ps plus premium"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "850 DHS", "secondary": "450 DHS" },
+      "ps4": { "primary": "450 DHS" }
     },
     "image": "assets/psplus-premium.png",
     "priority": 5
@@ -86,7 +86,7 @@
     "title": "Ghost Of Yotei",
     "keywords": ["ghost", "yotei", "ghost of yotei"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "400 DHS", "secondary": "330 DHS" }
     },
     "image": "assets/ghost-yotei.png",
     "priority": 3
@@ -97,8 +97,8 @@
     "title": "Call of Duty 7",
     "keywords": ["cod7", "call of duty 7", "call of duty"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "400 DHS", "secondary": "300 DHS" },
+      "ps4": { "primary": "170 DHS" }
     },
     "image": "assets/cod7.png",
     "priority": 2
@@ -109,7 +109,7 @@
     "title": "Battlefield 6",
     "keywords": ["battlefield", "bf6", "battlefield 6"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "400 DHS", "secondary": "300 DHS" }
     },
     "image": "assets/battlefield6.png",
     "priority": 3
@@ -120,7 +120,7 @@
     "title": "Black Myth: Wukong",
     "keywords": ["black myth", "wukong", "black myth wukong"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "300 DHS", "secondary": "250 DHS" }
     },
     "image": "assets/black-myth-wukong.png",
     "priority": 3
@@ -131,7 +131,7 @@
     "title": "Metal Gear Solid Delta: Snake Eater",
     "keywords": ["metal gear", "mgs delta", "snake eater"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "400 DHS", "secondary": "300 DHS" }
     },
     "image": "assets/mgs-delta.png",
     "priority": 3
@@ -142,8 +142,8 @@
     "title": "Assassin's Creed Legendary Collection",
     "keywords": ["assassin's creed", "legendary collection"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "330 DHS", "secondary": "250 DHS" },
+      "ps4": { "primary": "230 DHS" }
     },
     "image": "assets/assassin-legacy.png",
     "priority": 2
@@ -154,7 +154,7 @@
     "title": "Forza Horizon 5",
     "keywords": ["forza", "forza horizon 5", "fh5"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "330 DHS", "secondary": "250 DHS" }
     },
     "image": "assets/forza5.png",
     "priority": 3
@@ -165,7 +165,7 @@
     "title": "The Last of Us Part I",
     "keywords": ["the last of us", "tlou1", "last of us part 1"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "300 DHS", "secondary": "250 DHS" }
     },
     "image": "assets/tlou1.png",
     "priority": 3
@@ -176,8 +176,8 @@
     "title": "The Last of Us Part II",
     "keywords": ["tlou2", "the last of us 2", "last of us part 2"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "300 DHS", "secondary": "250 DHS" },
+      "ps4": { "primary": "200 DHS" }
     },
     "image": "assets/tlou2.png",
     "priority": 2
@@ -188,7 +188,7 @@
     "title": "Arc Raiders",
     "keywords": ["arc raiders", "arc"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "280 DHS", "secondary": "200 DHS" }
     },
     "image": "assets/arc-raiders.png",
     "priority": 3
@@ -199,7 +199,7 @@
     "title": "Assassin's Creed Shadows",
     "keywords": ["assassin shadows", "ac shadows"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" }
+      "ps5": { "primary": "300 DHS", "secondary": "250 DHS" }
     },
     "image": "assets/assassin-shadows.png",
     "priority": 3
@@ -210,8 +210,8 @@
     "title": "Ghost Of Tsushima",
     "keywords": ["ghost tsushima", "tsushima"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "230 DHS", "secondary": "180 DHS" },
+      "ps4": { "primary": "180 DHS" }
     },
     "image": "assets/ghost-tsushima.png",
     "priority": 2
@@ -222,8 +222,8 @@
     "title": "Hollow Knight: Silksong",
     "keywords": ["hollow knight", "silksong"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "180 DHS", "secondary": "140 DHS" },
+      "ps4": { "primary": "130 DHS" }
     },
     "image": "assets/hollow-silksong.png",
     "priority": 2
@@ -234,8 +234,8 @@
     "title": "Mafia Trilogy",
     "keywords": ["mafia trilogy", "mafia"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "—" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "200 DHS", "secondary": "150 DHS" },
+      "ps4": { "primary": "150 DHS" }
     },
     "image": "assets/mafia-trilogy.png",
     "priority": 2
