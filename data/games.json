@@ -3,12 +3,12 @@
     "sku": "FC26",
     "title": "EA SPORTS FC 26",
     "prices": {
-      "ps5": { 
-        "primary": "250 DHS", 
+      "ps4": { 
+        "primary": "200 DHS", 
         "secondary": "200 DHS" 
       },
-      "ps4": { 
-        "primary": "200 DHS" 
+      "ps5": { 
+        "primary": "250 DHS" 
       }
     },
     "image": "assets/fc26.png"
