@@ -132,7 +132,8 @@
     "category": "game",
     "image": "/assets/forza5-1200.webp",
     "platforms": {
-      "ps5": { "principal": "-", "secondaire": "-" }
+      "ps5": { "principal": "-", "secondaire": "-" },
+      "ps4": { "principal": "-", "secondaire": "-" }
     }
   },
   {
