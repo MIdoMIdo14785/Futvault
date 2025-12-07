@@ -21,23 +21,23 @@
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:8px}
   .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6);display:flex;flex-direction:column;position:relative}
-  .cover-wrap{position:relative;overflow:hidden}
-  .cover{width:100%;height:360px;object-fit:cover;display:block}
-  .price-overlay{position:absolute;left:0;right:0;bottom:0;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:linear-gradient(180deg, rgba(2,6,23,0.0), rgba(2,6,23,0.45));}
-  .price-left, .price-right{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:40%}
-  .price-text{background:linear-gradient(90deg,#ffd8a8,#ffb020);color:#081025;padding:8px 12px;border-radius:10px;font-weight:800}
-  .price-text.secondary{background:rgba(255,255,255,0.06);color:var(--muted);font-weight:700}
-  .card-body{padding:12px}
+  .cover{width:100%;height:360px;object-fit:cover;display:block;background:#0b1220}
+  .prices-below{display:flex;justify-content:space-between;align-items:flex-end;padding:12px 12px 6px 12px;gap:12px}
+  .price-col{width:48%;display:flex;flex-direction:column;align-items:center}
+  .price-label{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .price-primary{background:linear-gradient(90deg,#ffd8a8,#ffb020);color:#081025;padding:8px 12px;border-radius:10px;font-weight:800}
+  .price-secondary{background:rgba(255,255,255,0.06);color:var(--muted);padding:8px 12px;border-radius:10px;font-weight:700;margin-top:8px}
+  .card-body{padding:8px 12px 18px 12px}
   .title{font-weight:800;font-size:15px;margin-bottom:6px}
-  .meta{display:none} /* hide platform / sku as requested */
-  .stock{color:var(--muted);font-size:13px}
-
+  .meta{display:none} /* hide platform/sku */
   footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
 
   @media (max-width:720px){
     .cover{height:220px}
-    .price-overlay{flex-direction:column;height:auto;gap:8px;padding:10px}
-    .price-left,.price-right{min-width:100%;flex-direction:row;gap:8px;justify-content:center}
+    .prices-below{flex-direction:column;align-items:stretch;gap:8px}
+    .price-col{width:100%;flex-direction:row;justify-content:center;gap:10px}
+    .price-label{display:none}
+    .price-secondary{margin-top:0}
   }
 </style>
 </head>
@@ -90,29 +90,26 @@ function render(){
   });
   if(!rows.length){ grid.innerHTML='<div style="color:var(--muted)">Aucun résultat</div>'; return; }
   grid.innerHTML=rows.map(r=>{
-    const ps5Primary = r.prices?.ps5?.primary || r.price_primary || '';
-    const ps5Secondary = r.prices?.ps5?.secondary || r.price_secondary || '';
-    const ps4Primary = r.prices?.ps4?.primary || (r.platform==='PS4'? r.price_primary : '') || '';
+    const ps5Pri = r.prices?.ps5?.primary || r.price_primary || '';
+    const ps5Sec = r.prices?.ps5?.secondary || r.price_secondary || '';
+    const ps4Pri = r.prices?.ps4?.primary || (r.platform==='PS4'? r.price_primary : '');
     const img = r.image || 'assets/fc26.png';
     return `
       <div class="card">
-        <div class="cover-wrap">
-          <img class="cover" src="${img}" alt="${escapeHtml(r.title)}" loading="lazy" />
-          <div class="price-overlay">
-            <div class="price-left">
-              <div style="font-size:12px;color:var(--muted)">PS5</div>
-              <div class="price-text">${escapeHtml(ps5Primary || '—')}</div>
-              <div class="price-text secondary" style="margin-top:6px">${escapeHtml(ps5Secondary || '—')}</div>
-            </div>
-            <div class="price-right">
-              <div style="font-size:12px;color:var(--muted)">PS4</div>
-              <div class="price-text">${escapeHtml(ps4Primary || '—')}</div>
-            </div>
+        <img class="cover" src="${img}" alt="${escapeHtml(r.title)}" loading="lazy" />
+        <div class="prices-below">
+          <div class="price-col">
+            <div class="price-label">PS5</div>
+            <div class="price-primary">${escapeHtml(ps5Pri || '—')} <div style="font-size:12px;color:var(--muted);margin-top:6px">Principal</div></div>
+            <div class="price-secondary">${escapeHtml(ps5Sec || '—')} <div style="font-size:12px;color:var(--muted);margin-top:6px">Secondaire</div></div>
+          </div>
+          <div class="price-col">
+            <div class="price-label">PS4</div>
+            <div class="price-primary">${escapeHtml(ps4Pri || '—')}<div style="font-size:12px;color:var(--muted);margin-top:6px">Principal</div></div>
           </div>
         </div>
         <div class="card-body">
           <div class="title">${escapeHtml(r.title)}</div>
-          <div class="stock">Stock: ${escapeHtml(String(r.stock||'—'))}</div>
         </div>
       </div>
     `;
