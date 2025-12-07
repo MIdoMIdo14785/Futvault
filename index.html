@@ -8,8 +8,8 @@
 <style>
   :root{
     --bg1:#071025; --bg2:#0b1020; --muted:#9aa4bf;
-    --primary-color:#9ecbff;   /* doux bleu pour "Principal" */
-    --secondary-color:#cfeee6; /* doux vert pour "Secondaire" */
+    --primary-color:#9ecbff;   /* doux bleu */
+    --secondary-color:#cfeee6; /* doux vert */
     --card:#0f1724; --text:#e6eef9;
   }
   *{box-sizing:border-box}
@@ -33,12 +33,12 @@
   .card-body{padding:14px}
   .title{font-weight:800;font-size:15px;margin:6px 0 0;color:var(--text)}
 
-  /* PRICES ROW - fixed layout to avoid overlap */
+  /* PRICES ROW */
   .prices-row{
     display:flex;
     gap:18px;
     padding:12px;
-    align-items:stretch; /* ensure boxes same height */
+    align-items:stretch; /* equal height */
     justify-content:space-between;
   }
 
@@ -46,56 +46,72 @@
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.03);
     border-radius:12px;
-    padding:10px;
+    padding:12px 18px;        /* <-- increase horizontal padding to shift prices right a bit */
     width:48%;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:8px;
-    min-height:88px; /* consistent height */
+    min-height:100px;
   }
 
   .platform{color:var(--muted);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:2px}
 
-  /* badges container: fixed height and centered so primary badges align horizontally */
+  /* badges area: keep fixed height and center, so main badges align across boxes */
   .badges {
     display:flex;
-    gap:10px;
+    gap:12px;
     align-items:center;
     justify-content:center;
-    height:52px;         /* important: same height for both boxes */
+    height:56px;         /* important: same height for both boxes */
     width:100%;
     padding:0 6px;
     box-sizing:border-box;
   }
 
-  /* badges are allowed to shrink if needed to avoid overflow */
+  /* wrapper for each price with its label below */
+  .price-with-label{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    min-width:92px; /* ensure room */
+    max-width:42%;
+  }
+
   .badge{
     display:inline-flex;
     align-items:center;
     justify-content:center;
     padding:8px 10px;
     border-radius:10px;
-    min-width:88px;      /* smaller -> avoid overflow while staying readable */
-    max-width:100%;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
     font-weight:800;
     color:#042038;
     font-size:15px;
-    flex:0 1 auto;       /* can shrink when space is tight */
+    min-width:88px;
+    flex:0 1 auto;
   }
   .badge.primary{background:var(--primary-color)}
   .badge.secondary{background:var(--secondary-color);font-weight:700}
 
-  /* mobile: stack boxes vertically but keep badge heights */
+  .price-label-under{
+    font-size:12px;
+    color:var(--muted);
+    text-transform:capitalize;
+    letter-spacing:0.2px;
+  }
+
+  /* mobile */
   @media (max-width:720px){
     .cover{height:220px}
     .prices-row{flex-direction:column;align-items:stretch}
     .box{width:100%;flex-direction:column}
     .badges{height:48px}
     .badge{min-width:80px;padding:8px}
+    .price-with-label{max-width:48%}
   }
 </style>
 </head>
@@ -189,14 +205,24 @@ function render(){
           <div class="box">
             <div class="platform">PS5</div>
             <div class="badges">
-              <div class="badge primary">${escapeHtml(ps5Pri || '—')}</div>
-              <div class="badge secondary">${escapeHtml(ps5Sec || '—')}</div>
+              <div class="price-with-label">
+                <div class="badge primary">${escapeHtml(ps5Pri || '—')}</div>
+                <div class="price-label-under">Principal</div>
+              </div>
+              <div class="price-with-label">
+                <div class="badge secondary">${escapeHtml(ps5Sec || '—')}</div>
+                <div class="price-label-under">Secondaire</div>
+              </div>
             </div>
           </div>
+
           <div class="box">
             <div class="platform">PS4</div>
             <div class="badges">
-              <div class="badge primary">${escapeHtml(ps4Pri || '—')}</div>
+              <div class="price-with-label">
+                <div class="badge primary">${escapeHtml(ps4Pri || '—')}</div>
+                <div class="price-label-under">Principal</div>
+              </div>
             </div>
           </div>
         </div>
