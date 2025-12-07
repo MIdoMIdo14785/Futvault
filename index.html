@@ -7,20 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg1:#dfe6e9;
-    --bg2:#b2bec3;
-    --muted:#2d3436;
-    --primary-color:#9ecbff;
-    --secondary-color:#cfeee6;
-    --card:#ffffff;
-    --text:#2d3436;
+    --bg1:#dfe6e9; --bg2:#b2bec3; --muted:#2d3436;
+    --primary-color:#9ecbff; --secondary-color:#cfeee6; --card:#ffffff; --text:#2d3436;
+    --term-active:#2d6fb3; --term-inactive:#e6eef9;
   }
   *{box-sizing:border-box}
-  body{
-    margin:0;font-family:Inter,system-ui,Roboto,Arial;
-    background:linear-gradient(180deg,var(--bg1),var(--bg2));
-    color:var(--text);
-  }
+  body{margin:0;font-family:Inter,system-ui,Roboto,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text)}
   .wrap{max-width:1100px;margin:28px auto;padding:18px}
   header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
   .logo{width:72px;height:72px;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
@@ -48,12 +40,14 @@
   .badge.primary{background:var(--primary-color);color:#042038}
   .badge.secondary{background:var(--secondary-color);color:#042038}
   .price-label-under{font-size:12px;color:#636e72}
-  @media(max-width:720px){
-    .cover{height:260px;padding:12px}
-    .prices-row{flex-direction:column;gap:14px}
-    .box.half{width:100%}
-    .box.full{width:100%}
+  /* term buttons */
+  .terms-row{display:flex;gap:8px;margin-top:6px}
+  .term-btn{
+    padding:6px 10px;border-radius:8px;border:1px solid #d0d7e6;cursor:pointer;
+    background:var(--term-inactive);color:#042038;font-weight:600;font-size:13px;
   }
+  .term-btn.active{background:var(--term-active);color:#fff}
+  @media(max-width:720px){.cover{height:260px;padding:12px}.prices-row{flex-direction:column;gap:14px}.box.half{width:100%}.box.full{width:100%}}
 </style>
 </head>
 <body>
@@ -74,7 +68,16 @@
 <script>
 const DATA_URL='data/games.json';
 let data=[];
+/* per-card selected terms (keyed by sku) */
+const selectedTerm = {}; // e.g. { 'PSPLUS-ESSENTIAL': '6m' }
 
+/* helper to set term and rerender */
+function setTerm(sku, term){
+  selectedTerm[sku] = term;
+  render();
+}
+
+/* fetch data */
 async function fetchData(){
   try{
     const res = await fetch(DATA_URL,{cache:'no-store'});
@@ -97,25 +100,25 @@ function populatePlatform(){
   const sel=document.getElementById('platform');
   const set=new Set();
   data.forEach(g=>{
-    if(g.prices?.ps5 && ((g.prices.ps5.primary||'').trim() || (g.prices.ps5.secondary||'').trim())) set.add('PS5');
-    if(g.prices?.ps4 && ((g.prices.ps4.primary||'').trim())) set.add('PS4');
+    if(g.prices?.ps5 && ((g.prices.ps5.primary||'').toString().trim() || (g.prices.ps5.secondary||'').toString().trim() || g.prices.ps5.terms)) set.add('PS5');
+    if(g.prices?.ps4 && ((g.prices.ps4.primary||'').toString().trim() || g.prices.ps4.terms)) set.add('PS4');
   });
   sel.innerHTML = '<option value="">Toutes plateformes</option>' + [...set].map(p=>`<option value="${p}">${p}</option>`).join('');
 }
 
 function matchesPlatform(g,pf){
   if(!pf) return true;
-  if(pf==='PS5') return !!(g.prices?.ps5 && ((g.prices.ps5.primary||'').trim() || (g.prices.ps5.secondary||'').trim()));
-  if(pf==='PS4') return !!(g.prices?.ps4 && ((g.prices.ps4.primary||'').trim()));
+  if(pf==='PS5') return !!(g.prices?.ps5 && ((g.prices.ps5.primary||'').toString().trim() || (g.prices.ps5.secondary||'').toString().trim() || g.prices.ps5.terms));
+  if(pf==='PS4') return !!(g.prices?.ps4 && ((g.prices.ps4.primary||'').toString().trim() || g.prices.ps4.terms));
   return true;
 }
 
+/* render UI */
 function render(){
   const q=document.getElementById('q').value.trim().toLowerCase();
   const pf=document.getElementById('platform').value;
   const grid=document.getElementById('grid');
 
-  // filter
   let rows = data.filter(g=>{
     if(!matchesPlatform(g,pf)) return false;
     if(!q) return true;
@@ -123,10 +126,9 @@ function render(){
     return tokens.every(t => (g._search && g._search.includes(t)));
   });
 
-  // sort by priority so PS+ slots appear first (higher priority)
   rows.sort((a,b)=>(b.priority||0)-(a.priority||0));
 
-  // ensure custom order requested:
+  // desired static ordering first
   const order = ["PSPLUS-ESSENTIAL","PSPLUS-EXTRA","PSPLUS-PREMIUM","FC26","GTA5","RDR2","ELDEN","GHOST-YOTEI"];
   rows.sort((a,b)=>{
     const ia = order.indexOf(a.sku);
@@ -142,52 +144,94 @@ function render(){
   if(!rows.length){ grid.innerHTML = '<div style="color:#636e72">Aucun résultat</div>'; return; }
 
   grid.innerHTML = rows.map(r=>{
-    const ps5Pri = (r.prices?.ps5?.primary && r.prices.ps5.primary.toString().trim()!=='') ? r.prices.ps5.primary : '—';
-    // show secondary ALWAYS under primary for PS5, even if empty -> display '—'
-    const ps5Sec = (r.prices?.ps5?.secondary && r.prices.ps5.secondary.toString().trim()!=='') ? r.prices.ps5.secondary : '—';
-
-    const hasPS4 = !!(r.prices && r.prices.ps4 && (r.prices.ps4.primary||'').toString().trim() !== '');
-    const ps4Pri = hasPS4 ? (r.prices.ps4.primary || '—') : '';
     const img = r.image || 'assets/placeholder.png';
+
+    // PS5: support two formats:
+    // 1) legacy: r.prices.ps5.primary / secondary
+    // 2) new: r.prices.ps5.terms = { "6m": {primary,secondary}, "12m": {primary,secondary} }
+    const ps5 = r.prices?.ps5 || null;
+    let ps5Primary = '—', ps5Secondary = '—', ps5HasTerms=false, ps5TermsList=[];
+    if(ps5){
+      if(ps5.terms && typeof ps5.terms === 'object'){
+        ps5HasTerms = true;
+        ps5TermsList = Object.keys(ps5.terms); // e.g. ["6m","12m"]
+        const term = selectedTerm[r.sku] || (ps5TermsList.includes('12m') ? '12m' : ps5TermsList[0]);
+        const termData = ps5.terms[term] || {};
+        ps5Primary = termData.primary && termData.primary.toString().trim()!=='' ? termData.primary : '—';
+        ps5Secondary = (termData.secondary && termData.secondary.toString().trim()!=='') ? termData.secondary : '—';
+      } else {
+        ps5Primary = ps5.primary && ps5.primary.toString().trim()!=='' ? ps5.primary : '—';
+        ps5Secondary = (ps5.secondary && ps5.secondary.toString().trim()!=='') ? ps5.secondary : '—';
+      }
+    }
+
+    // PS4 handling: same logic (terms or legacy). show box only if has primary or terms
+    const ps4 = r.prices?.ps4 || null;
+    let hasPS4=false, ps4Primary='—', ps4HasTerms=false, ps4TermsList=[];
+    if(ps4){
+      if(ps4.terms && typeof ps4.terms === 'object'){
+        ps4HasTerms = true;
+        ps4TermsList = Object.keys(ps4.terms);
+        // use same selectedTerm key but fallback to 12m if exists
+        const term = selectedTerm[r.sku] || (ps4TermsList.includes('12m') ? '12m' : ps4TermsList[0]);
+        const td = ps4.terms[term] || {};
+        ps4Primary = td.primary && td.primary.toString().trim()!=='' ? td.primary : '—';
+        hasPS4 = true;
+      } else if(ps4.primary && ps4.primary.toString().trim()!==''){
+        ps4Primary = ps4.primary;
+        hasPS4 = true;
+      }
+    }
 
     const ps5BoxClass = hasPS4 ? 'box half' : 'box full';
 
-    const ps4Html = hasPS4 ? `
-      <div class="box half">
-        <div class="platform">PS4</div>
-        <div class="badges-ps4">
-          <div class="price-with-label">
-            <div class="badge primary">${escapeHtml(ps4Pri)}</div>
-            <div class="price-label-under">Principal</div>
-          </div>
-        </div>
-      </div>` : '';
+    // generate term buttons html if ps5HasTerms
+    let termButtonsHtml = '';
+    if(ps5HasTerms){
+      termButtonsHtml = `<div class="terms-row">` +
+        ps5TermsList.map(t => {
+          const active = (selectedTerm[r.sku] || (ps5TermsList.includes('12m') ? '12m' : ps5TermsList[0])) === t;
+          return `<button class="term-btn ${active? 'active' : ''}" onclick="setTerm('${escapeJs(r.sku)}','${escapeJs(t)}')">${escapeHtml(t)}</button>`;
+        }).join('') +
+        `</div>`;
+    }
 
-    // PS5 always shows both primary and secondaire stacked
+    // PS5 HTML (always show primary + secondaire stacked)
     const ps5Html = `
       <div class="${ps5BoxClass}">
         <div class="platform">PS5</div>
         <div class="badges-ps5">
           <div class="price-with-label">
-            <div class="badge primary">${escapeHtml(ps5Pri)}</div>
+            <div class="badge primary">${escapeHtml(ps5Primary)}</div>
             <div class="price-label-under">Principal</div>
           </div>
           <div class="price-with-label">
-            <div class="badge secondary">${escapeHtml(ps5Sec)}</div>
+            <div class="badge secondary">${escapeHtml(ps5Secondary)}</div>
             <div class="price-label-under">Secondaire</div>
           </div>
+          ${termButtonsHtml}
         </div>
       </div>`;
+
+    // PS4 HTML if present
+    const ps4Html = hasPS4 ? `
+      <div class="box half">
+        <div class="platform">PS4</div>
+        <div class="badges-ps4">
+          <div class="price-with-label">
+            <div class="badge primary">${escapeHtml(ps4Primary)}</div>
+            <div class="price-label-under">Principal</div>
+          </div>
+        </div>
+      </div>` : '';
 
     return `
       <div class="card">
         <div class="cover"><img src="${escapeHtml(img)}" alt="${escapeHtml(r.title)}"></div>
-
         <div class="prices-row">
           ${ps5Html}
           ${ps4Html}
         </div>
-
         <div class="card-body"><div class="title">${escapeHtml(r.title)}</div></div>
       </div>
     `;
@@ -195,6 +239,8 @@ function render(){
 }
 
 function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* for embedding in onclick, escape single quotes/backslashes */
+function escapeJs(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
 
 document.getElementById('q').addEventListener('input', render);
 document.getElementById('platform').addEventListener('change', render);
