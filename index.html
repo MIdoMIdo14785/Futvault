@@ -4,17 +4,20 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>FUTVault — Price list</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg1:#071025; 
-    --bg2:#0b1020; 
-    --muted:#9aa4bf;
-    --primary-color:#9ecbff;   /* doux bleu */
-    --secondary-color:#cfeee6; /* doux vert */
-    --card:#0f1724; 
-    --text:#e6eef9;
+    --bg1:#dfe6e9;   /* gris clair */
+    --bg2:#b2bec3;   /* gris moyen */
+    --muted:#2d3436;
+    --primary-color:#9ecbff;
+    --secondary-color:#cfeee6;
+    --card:#ffffff;  /* carte blanche très propre */
+    --text:#2d3436;
   }
+
   *{box-sizing:border-box}
   body{
     margin:0;
@@ -28,18 +31,21 @@
   header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
   .logo{width:68px;height:68px;border-radius:12px;overflow:hidden}
   .logo img{width:100%;height:100%;object-fit:cover}
+
   h1{margin:0;font-size:20px}
   .lead{color:var(--muted);font-size:13px;margin-top:4px}
 
   .controls{display:flex;gap:10px;margin:18px 0;align-items:center}
+
   .search{
-    flex:1;padding:12px;border-radius:10px;border:0;
-    background:rgba(255,255,255,0.03);color:#fff
+    flex:1;padding:12px;border-radius:10px;border:1px solid #ccc;
+    background:white;color:#2d3436
   }
-  .search::placeholder{color:rgba(255,255,255,0.5)}
+  .search::placeholder{color:#777}
+
   .select{
-    padding:10px;border-radius:10px;background:transparent;
-    border:1px solid rgba(255,255,255,0.04);color:var(--muted)
+    padding:10px;border-radius:10px;background:white;
+    border:1px solid #aaa;color:#2d3436
   }
 
   .grid{
@@ -53,11 +59,20 @@
     background:var(--card);
     border-radius:12px;
     overflow:hidden;
-    box-shadow:0 10px 30px rgba(2,6,23,0.6);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
     display:flex;flex-direction:column;
   }
 
-  .cover{width:100%;height:360px;object-fit:cover;background:#0b1220;display:block}
+  /* IMAGE ENTIÈREMENT VISIBLE */
+  .cover{
+    width:100%;
+    height:320px;
+    object-fit:contain;
+    background:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
 
   .card-body{padding:14px}
   .title{font-weight:800;font-size:15px;margin:6px 0 0;color:var(--text)}
@@ -70,8 +85,8 @@
     justify-content:space-between;
   }
 
-  .box {
-    background: rgba(255,255,255,0.02);
+  .box{
+    background:#f1f2f6;
     border-radius:12px;
     padding:16px 22px;
     width:48%;
@@ -79,17 +94,18 @@
     flex-direction:column;
     align-items:center;
     gap:10px;
+    border:1px solid #dcdde1;
   }
 
   .platform{
-    color:var(--muted);
+    color:#2d3436;
     font-weight:700;
     font-size:13px;
     text-transform:uppercase;
     margin-bottom:2px;
   }
 
-  /* PS5 -> grid 2 columns (principal + secondaire) */
+  /* PS5 grid = 2 colonnes */
   .badges-ps5{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -99,12 +115,11 @@
     align-items:center;
   }
 
-  /* PS4 -> single column, centered */
+  /* PS4 = une seule colonne centrée */
   .badges-ps4{
     display:flex;
-    width:100%;
     justify-content:center;
-    align-items:center;
+    width:100%;
   }
 
   .price-with-label{
@@ -117,134 +132,147 @@
   }
 
   .badge{
-    display:flex;align-items:center;justify-content:center;
-    padding:10px 12px;border-radius:10px;white-space:nowrap;
-    font-weight:800;font-size:15px;min-width:90px;text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 12px;
+    border-radius:10px;
+    white-space:nowrap;
+    font-weight:800;
+    font-size:15px;
+    min-width:90px;
+    text-align:center;
   }
+
   .badge.primary{background:var(--primary-color);color:#042038}
   .badge.secondary{background:var(--secondary-color);color:#042038}
 
-  .price-label-under{font-size:12px;color:var(--muted)}
+  .price-label-under{
+    font-size:12px;
+    color:#636e72;
+  }
 
   @media(max-width:720px){
-    .cover{height:220px}
+    .cover{height:260px}
     .prices-row{flex-direction:column;gap:14px}
     .box{width:100%}
-    .badges-ps5{grid-template-columns:1fr 1fr}
   }
+
 </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo"><img src="assets/logo.png" alt="FUTVault logo"/></div>
-      <div>
-        <h1>FUTVault — Price list</h1>
-        <div class="lead">Catalogue professionnel</div>
-      </div>
-    </header>
+<div class="wrap">
 
-    <div class="controls">
-      <input id="q" class="search" placeholder="Rechercher (titre, SKU)..." />
-      <select id="platform" class="select"><option value="">Toutes plateformes</option></select>
-    </div>
-
-    <div id="grid" class="grid" aria-live="polite"></div>
+<header>
+  <div class="logo"><img src="assets/logo.png"></div>
+  <div>
+    <h1>FUTVault — Price list</h1>
+    <div class="lead">Catalogue professionnel</div>
   </div>
+</header>
+
+<div class="controls">
+  <input id="q" class="search" placeholder="Rechercher un jeu..." />
+  <select id="platform" class="select">
+    <option value="">Toutes plateformes</option>
+  </select>
+</div>
+
+<div id="grid" class="grid"></div>
+
+</div>
 
 <script>
-const DATA_URL = 'data/games.json';
-let data = [];
+const DATA_URL='data/games.json';
+let data=[];
 
 async function fetchData(){
-  try{
-    const res = await fetch(DATA_URL, {cache:'no-store'});
-    data = await res.json();
-    populatePlatform();
-    render();
-  }catch(e){
-    document.getElementById('grid').innerHTML = '<div style="color:#ff6b6b">Erreur chargement data</div>';
-  }
+  const res = await fetch(DATA_URL,{cache:'no-store'});
+  data = await res.json();
+  populatePlatform();
+  render();
 }
 
 function populatePlatform(){
-  const sel = document.getElementById('platform');
-  const set = new Set();
+  const sel=document.getElementById('platform');
+  const set=new Set();
   data.forEach(g=>{
-    if(g.prices && g.prices.ps5 && ((g.prices.ps5.primary||'').trim() || (g.prices.ps5.secondary||'').trim())) set.add('PS5');
-    if(g.prices && g.prices.ps4 && ((g.prices.ps4.primary||'').trim())) set.add('PS4');
+    if(g.prices?.ps5) set.add("PS5");
+    if(g.prices?.ps4) set.add("PS4");
   });
-  sel.innerHTML = '<option value="">Toutes plateformes</option>' + [...set].map(p=>`<option value="${p}">${p}</option>`).join('');
+  sel.innerHTML='<option value="">Toutes plateformes</option>' +
+    [...set].map(p=>`<option>${p}</option>`).join('');
 }
 
-function matchesPlatform(g, pf){
+function matchesPlatform(g,pf){
   if(!pf) return true;
-  if(pf === 'PS5') return !!(g.prices && g.prices.ps5 && ((g.prices.ps5.primary||'').trim() || (g.prices.ps5.secondary||'').trim()));
-  if(pf === 'PS4') return !!(g.prices && g.prices.ps4 && ((g.prices.ps4.primary||'').trim()));
+  if(pf==="PS5") return g.prices?.ps5;
+  if(pf==="PS4") return g.prices?.ps4;
   return true;
 }
 
 function render(){
-  const q = document.getElementById('q').value.trim().toLowerCase();
-  const pf = document.getElementById('platform').value;
-  const grid = document.getElementById('grid');
+  const q=document.getElementById('q').value.toLowerCase();
+  const pf=document.getElementById('platform').value;
+  const grid=document.getElementById('grid');
 
-  const rows = data.filter(g=>{
-    if(!matchesPlatform(g, pf)) return false;
-    if(!q) return true;
-    const hay = ((g.title||'')+' '+(g.sku||'')).toLowerCase();
-    return hay.includes(q);
+  const rows=data.filter(g=>{
+    if(!matchesPlatform(g,pf)) return false;
+    const hay=(g.title+" "+g.sku).toLowerCase();
+    if(q && !hay.includes(q)) return false;
+    return true;
   });
 
-  grid.innerHTML = rows.map(r=>{
-    const ps5Pri = r.prices && r.prices.ps5 ? r.prices.ps5.primary || '' : '';
-    const ps5Sec = r.prices && r.prices.ps5 ? r.prices.ps5.secondary || '' : '';
-    const ps4Pri = r.prices && r.prices.ps4 ? r.prices.ps4.primary || '' : '';
-    const img = r.image || 'assets/fc26.png';
+  grid.innerHTML=rows.map(r=>{
+    const ps5Pri=r.prices.ps5?.primary||"—";
+    const ps5Sec=r.prices.ps5?.secondary||"—";
+    const ps4Pri=r.prices.ps4?.primary||"—";
 
     return `
       <div class="card">
-        <img class="cover" src="${escapeHtml(img)}" alt="${escapeHtml(r.title)}" loading="lazy" />
+        <div class="cover">
+          <img src="${r.image}" style="max-width:100%;max-height:100%;object-fit:contain;">
+        </div>
+
         <div class="prices-row">
-          <!-- PS5 box (two columns) -->
+
           <div class="box">
             <div class="platform">PS5</div>
             <div class="badges-ps5">
               <div class="price-with-label">
-                <div class="badge primary">${escapeHtml(ps5Pri || '—')}</div>
+                <div class="badge primary">${ps5Pri}</div>
                 <div class="price-label-under">Principal</div>
               </div>
               <div class="price-with-label">
-                <div class="badge secondary">${escapeHtml(ps5Sec || '—')}</div>
+                <div class="badge secondary">${ps5Sec}</div>
                 <div class="price-label-under">Secondaire</div>
               </div>
             </div>
           </div>
 
-          <!-- PS4 box (single centered column) -->
           <div class="box">
             <div class="platform">PS4</div>
             <div class="badges-ps4">
               <div class="price-with-label">
-                <div class="badge primary">${escapeHtml(ps4Pri || '—')}</div>
+                <div class="badge primary">${ps4Pri}</div>
                 <div class="price-label-under">Principal</div>
               </div>
             </div>
           </div>
+
         </div>
 
-        <div class="card-body"><div class="title">${escapeHtml(r.title)}</div></div>
+        <div class="card-body"><div class="title">${r.title}</div></div>
       </div>
     `;
   }).join('');
 }
 
-function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-document.getElementById('q').addEventListener('input', render);
-document.getElementById('platform').addEventListener('change', render);
-
 fetchData();
+document.getElementById('q').addEventListener('input',render);
+document.getElementById('platform').addEventListener('change',render);
 </script>
+
 </body>
 </html>
