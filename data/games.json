@@ -106,6 +106,17 @@
   },
 
   {
+    "id": "ghost-of-tsushima",
+    "name": "Ghost of Tsushima",
+    "category": "game",
+    "image": "/assets/ghost-of-tsushima-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" },
+      "ps4": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
     "id": "battlefield6",
     "name": "Battlefield 6",
     "category": "game",
