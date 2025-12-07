@@ -7,55 +7,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#071025;--card:#0b1724;--muted:#9aa4bf;--accent:#a8d4ff;--accent2:#cfe6df;--text:#e6eef9;
-    --light-bg:#f0f3f5;--light-card:#fff;--light-text:#0b1724;
+    --bg1:#071025; --bg2:#061226;
+    --card:#0b1724; --muted:#9aa4bf; --text:#e6eef9;
+    --primary:#a8d4ff; --secondary:#cfe6df;
+    --soft:#0f1b26;
+    --radius:14px;
   }
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg),#061022);color:var(--text)}
-  .wrap{max-width:1100px;margin:28px auto;padding:18px}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text)}
+  .wrap{max-width:1180px;margin:28px auto;padding:18px}
   header{display:flex;align-items:center;gap:18px;margin-bottom:18px}
-  .logo{width:64px;height:64px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c6ff);display:flex;align-items:center;justify-content:center}
+  .logo{width:64px;height:64px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c6ff);display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .logo img{width:100%;height:100%;object-fit:cover}
   h1{margin:0;font-size:20px}
   .lead{color:var(--muted);font-size:13px;margin-top:4px}
   .controls{display:flex;gap:12px;margin:18px 0;align-items:center;justify-content:space-between}
   .search{flex:1;display:flex;gap:8px}
-  input.searchbox{flex:1;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);color:var(--text)}
+  input.searchbox{flex:1;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);color:var(--text);min-width:220px}
   select.platform{padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:none;color:var(--text)}
-  button.refresh{padding:10px 14px;border-radius:10px;border:none;background:var(--accent);color:#072033;cursor:pointer}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-top:18px}
-  .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 8px 20px rgba(2,6,12,0.6);display:flex;flex-direction:column;gap:12px}
-  .cover{width:100%;height:360px;border-radius:12px;background:linear-gradient(180deg,#021024,#02101a);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-top:18px;align-items:start}
+  .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(2,6,12,0.6);display:flex;flex-direction:column;gap:12px;min-height:520px}
+  .cover{width:100%;height:320px;border-radius:10px;background:linear-gradient(180deg,#021024,#02101a);display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:10px}
   .cover img{width:100%;height:100%;object-fit:cover;border-radius:8px}
-  .meta{font-weight:600}
-  .platform-row{display:flex;gap:18px;align-items:flex-end;justify-content:center;margin-top:8px}
-  .plat{background:rgba(255,255,255,0.02);padding:14px;border-radius:12px;min-width:120px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+  .title{font-weight:700;font-size:16px;margin-top:6px}
+  /* durations buttons centered under title */
+  .durations{display:flex;gap:8px;justify-content:center;margin:4px 0}
+  .durations button{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:var(--text);cursor:pointer}
+  /* platforms area */
+  .platforms{display:flex;gap:12px;align-items:flex-end;justify-content:center;margin-top:6px}
+  .plat{background:var(--soft);border-radius:12px;padding:14px;min-width:140px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
   .plat h4{margin:0;font-size:14px;color:var(--muted)}
-  .price-box{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:10px}
-  .price{min-width:120px;padding:12px 18px;border-radius:10px;background:var(--accent);color:#072033;font-weight:700;box-shadow:0 6px 18px rgba(2,6,12,0.4)}
-  .price.secondary{background:var(--accent2);color:#072033}
+  .prices{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .price{padding:12px 20px;border-radius:12px;background:var(--primary);color:#072033;font-weight:700;min-width:120px;box-shadow:0 10px 18px rgba(2,6,12,0.35);text-align:center}
+  .price.secondary{background:var(--secondary);color:#072033}
   .label{font-size:13px;color:var(--muted);margin-top:6px}
-  .duration-buttons{display:flex;gap:8px;justify-content:center;margin-top:10px}
-  .duration-buttons button{padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);background:#fff;color:#123;border-weight:600;cursor:pointer}
-  .small-note{font-size:13px;color:var(--muted);margin-top:8px}
+  /* PS5-only layout: single centered box (we apply via JS but force style) */
+  .pssingle{margin:0 auto}
+  /* smaller screens */
+  @media(max-width:520px){
+    .cover{height:220px}
+    .price{min-width:110px;padding:10px 14px}
+  }
+  /* light mode (togglable by class on <html>) */
+  :root.light{--bg1:#e9f2f4;--bg2:#e6eef3;--card:#ffffff;--soft:#f6f7f9;--text:#0b1724;--muted:#6b7380}
   .error{color:#ff6b6b;font-weight:700}
-  /* Light mode */
-  :root.light{--bg:#e9f0f3;--card:var(--light-card);--text:var(--light-text);--muted:#6b7380}
-  .top-right{display:flex;gap:12px;align-items:center}
-  .toggle{padding:8px 12px;border-radius:14px;background:rgba(255,255,255,0.06);cursor:pointer}
-  @media(max-width:520px){.cover{height:260px}}
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="logo"><img src="assets/logo.png" alt="logo" id="siteLogo" onerror="this.style.display='none'"></div>
+      <div class="logo"><img src="assets/logo.png" alt="FUTVault logo" id="siteLogo" onerror="this.style.display='none'"></div>
       <div>
         <h1>FUTVault — Price list</h1>
-        <div class="lead">Catalogue professionnel</div>
+        <div class="lead" id="leadText">Catalogue professionnel</div>
       </div>
       <div style="flex:1"></div>
-      <div class="top-right">
-        <button id="modeToggle" class="toggle">Mode clair</button>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="modeToggle" class="toggle" style="padding:8px 12px;border-radius:12px;border:none;background:rgba(255,255,255,0.02);color:var(--text);cursor:pointer">Mode clair</button>
       </div>
     </header>
 
@@ -72,7 +79,7 @@
       </div>
     </div>
 
-    <div id="message" class="small-note"></div>
+    <div id="message" style="margin-top:6px"></div>
     <div id="grid" class="grid"></div>
   </div>
 
@@ -83,142 +90,202 @@
   const search = document.getElementById('searchInput');
   const filter = document.getElementById('platformFilter');
   const modeBtn = document.getElementById('modeToggle');
-  let data = [], duration = '12m'; // default: show 12m prices
-  // load JSON
+  let data = [], duration = '12m'; // default show 12 months on load
+
+  // fetch JSON (relative path)
   try{
     const res = await fetch('data/games.json', {cache: "no-store"});
     if(!res.ok) throw new Error('JSON fetch failed: ' + res.status);
     data = await res.json();
   } catch(e){
-    msg.innerHTML = '<span class="error">Erreur chargement data</span>';
+    msg.innerHTML = '<div class="error">Erreur chargement data</div>';
     console.error(e);
     return;
   }
 
-  // utilities
-  function hasPlatform(item, plat){
-    if(item.category==='subscription') {
-      return !!item.prices && !!item.prices[plat];
-    } else {
-      return !!item.platforms && !!item.platforms[plat];
-    }
+  // ---- utilities ----
+  function formatPrice(v){
+    if(v === undefined || v === null || v === '-') return '-';
+    return (typeof v === 'number' ? `${v} DHS` : v);
   }
-  function formatPrice(v){ if(v===undefined||v===null) return '-'; if(v==='-') return '-'; return (typeof v==='number'? v + ' DHS': v); }
-  function createCard(item){
-    const c = document.createElement('div'); c.className='card';
+
+  function createPriceElement(value, isSecondary=false){
+    const el = document.createElement('div');
+    el.className = 'price' + (isSecondary ? ' secondary' : '');
+    el.textContent = formatPrice(value);
+    // ensure padding so text doesn't touch edges
+    el.style.minWidth = '120px';
+    el.style.boxSizing = 'border-box';
+    el.style.textAlign = 'center';
+    return el;
+  }
+
+  // build card for each item
+  function buildCard(item){
+    const card = document.createElement('div'); card.className = 'card';
+
     // cover
     const cover = document.createElement('div'); cover.className='cover';
     const img = document.createElement('img');
-    img.src = (item.image || '/assets/placeholder-800.webp');
+    img.src = item.image || 'assets/placeholder-1200.webp';
     img.alt = item.name;
-    img.loading = 'lazy';
-    img.onerror = function(){ this.src='/assets/placeholder-800.webp' };
+    img.onerror = function(){ this.src = 'assets/placeholder-1200.webp'; }
     cover.appendChild(img);
-    c.appendChild(cover);
-    // title
-    const title = document.createElement('div'); title.innerHTML = '<div class="meta">'+item.name+'</div>';
-    c.appendChild(title);
-    // durations buttons (centered under title)
-    const durWrap = document.createElement('div'); durWrap.className='duration-buttons';
-    const btn6 = document.createElement('button'); btn6.textContent='6 mois';
-    const btn12 = document.createElement('button'); btn12.textContent='12 mois';
-    btn6.onclick = ()=>{ duration='6m'; render(); };
-    btn12.onclick = ()=>{ duration='12m'; render(); };
-    durWrap.appendChild(btn6); durWrap.appendChild(btn12);
-    c.appendChild(durWrap);
+    card.appendChild(cover);
 
-    // platform row
-    const prow = document.createElement('div'); prow.className='platform-row';
-    // helper to build plat box
-    function buildPlatBox(label, obj, isSubscription=false){
-      const p = document.createElement('div'); p.className='plat';
-      const h = document.createElement('h4'); h.textContent = label; p.appendChild(h);
-      const priceRow = document.createElement('div'); priceRow.className='price-box';
-      // Primary
-      const primary = document.createElement('div'); primary.className='price';
-      let primaryVal = '-';
-      if(isSubscription){
-        if(obj && obj.principal && obj.principal[duration]!==undefined) primaryVal = obj.principal[duration];
-      } else {
-        if(obj && obj.principal!==undefined) primaryVal = obj.principal;
-      }
-      primary.textContent = formatPrice(primaryVal);
-      priceRow.appendChild(primary);
-      // Secondary (only if exists)
-      const secondaryVal = (isSubscription && obj && obj.secondaire && obj.secondaire[duration]!==undefined) ? obj.secondaire[duration] : ( !isSubscription && obj && obj.secondaire!==undefined ? obj.secondaire : '-' );
-      const secondary = document.createElement('div'); secondary.className='price secondary'; secondary.textContent = formatPrice(secondaryVal);
-      priceRow.appendChild(secondary);
-      p.appendChild(priceRow);
-      // labels
-      const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
-      const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
-      p.appendChild(l1); p.appendChild(l2);
-      // hide secondary if '-'
-      if(secondaryVal === '-' || secondaryVal === null) { secondary.style.visibility='hidden'; l2.style.visibility='hidden'; }
-      return p;
+    // title and durations
+    const title = document.createElement('div'); title.className='title'; title.textContent = item.name;
+    card.appendChild(title);
+
+    // durations: only show for subscriptions
+    const durWrap = document.createElement('div'); durWrap.className='durations';
+    if(item.category === 'subscription'){
+      const b6 = document.createElement('button'); b6.textContent='6 mois';
+      const b12 = document.createElement('button'); b12.textContent='12 mois';
+      b6.onclick = (e)=>{ duration='6m'; render(); };
+      b12.onclick = (e)=>{ duration='12m'; render(); };
+      // style active
+      if(duration === '6m') b6.style.boxShadow = 'inset 0 0 0 2px rgba(0,0,0,0.12)';
+      if(duration === '12m') b12.style.boxShadow = 'inset 0 0 0 2px rgba(0,0,0,0.12)';
+      durWrap.appendChild(b6); durWrap.appendChild(b12);
+      card.appendChild(durWrap);
+    } else {
+      // add small spacer for alignment
+      const spacer = document.createElement('div'); spacer.style.height='6px'; card.appendChild(spacer);
     }
+
+    // platforms area
+    const platformsWrap = document.createElement('div'); platformsWrap.className='platforms';
 
     if(item.category === 'subscription'){
-      const ps5obj = item.prices.ps5 || null;
-      const ps4obj = item.prices.ps4 || null;
-      prow.appendChild(buildPlatBox('PS5', ps5obj, true));
-      prow.appendChild(buildPlatBox('PS4', ps4obj, true));
+      // subscription: always show ps5 and ps4 boxes side by side (even if "-")
+      const ps5 = item.prices.ps5 || {};
+      const ps4 = item.prices.ps4 || {};
+      platformsWrap.appendChild(buildSubscriptionBox('PS5', ps5, true));
+      platformsWrap.appendChild(buildSubscriptionBox('PS4', ps4, true));
     } else {
-      // games: show PS5 and PS4 if exist; if only PS5 center it
-      const ps5exists = !!(item.platforms && item.platforms.ps5);
-      const ps4exists = !!(item.platforms && item.platforms.ps4);
-      if(ps5exists && ps4exists){
-        prow.appendChild(buildPlatBox('PS5', item.platforms.ps5));
-        prow.appendChild(buildPlatBox('PS4', item.platforms.ps4));
-      } else if(ps5exists){
-        const box = buildPlatBox('PS5', item.platforms.ps5);
-        box.style.margin = '0 auto';
-        prow.appendChild(box);
-      } else if(ps4exists){
-        const box = buildPlatBox('PS4', item.platforms.ps4);
-        box.style.margin = '0 auto';
-        prow.appendChild(box);
+      // game: show ps5 and ps4 if exist; if only ps5 -> centered box with secondary below
+      const hasPs5 = item.platforms && item.platforms.ps5;
+      const hasPs4 = item.platforms && item.platforms.ps4;
+      if(hasPs5 && hasPs4){
+        platformsWrap.appendChild(buildGameBox('PS5', item.platforms.ps5, false));
+        platformsWrap.appendChild(buildGameBox('PS4', item.platforms.ps4, false));
+      } else if(hasPs5){
+        const b = buildGameBox('PS5', item.platforms.ps5, false);
+        b.classList.add('pssingle');
+        platformsWrap.appendChild(b);
+      } else if(hasPs4){
+        const b = buildGameBox('PS4', item.platforms.ps4, false);
+        b.classList.add('pssingle');
+        platformsWrap.appendChild(b);
       } else {
-        const none = document.createElement('div'); none.textContent='No platform info'; none.style.color='var(--muted)';
-        prow.appendChild(none);
+        const none = document.createElement('div'); none.textContent='No platform info';
+        none.style.color = 'var(--muted)'; platformsWrap.appendChild(none);
       }
     }
 
-    c.appendChild(prow);
-    return c;
+    card.appendChild(platformsWrap);
+    return card;
   }
 
-  // render function (based on filter & search)
+  function buildSubscriptionBox(label, obj, isSub){
+    const box = document.createElement('div'); box.className='plat';
+    const h = document.createElement('h4'); h.textContent = label; box.appendChild(h);
+
+    // primary (from obj.principal[duration])
+    let primary = '-';
+    if(obj && obj.principal && obj.principal[duration] !== undefined) primary = obj.principal[duration];
+    const primaryEl = createPriceElement(primary, false);
+
+    // secondary
+    let secondary = '-';
+    if(obj && obj.secondaire && obj.secondaire[duration] !== undefined) secondary = obj.secondaire[duration];
+    const secondaryEl = createPriceElement(secondary, true);
+
+    // arrange: put primary and secondary vertically (stacked) for clarity, but style ensures center
+    const pricesWrap = document.createElement('div'); pricesWrap.className='prices';
+    // show both, side-by-side for subscription but keep centered and spaced
+    pricesWrap.appendChild(primaryEl);
+    pricesWrap.appendChild(secondaryEl);
+    box.appendChild(pricesWrap);
+
+    const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
+    const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
+    box.appendChild(l1); box.appendChild(l2);
+
+    // hide secondary if '-'
+    if(secondary === '-' || secondary === null) { secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
+
+    return box;
+  }
+
+  function buildGameBox(label, obj, isSub){
+    const box = document.createElement('div'); box.className='plat';
+    const h = document.createElement('h4'); h.textContent = label; box.appendChild(h);
+
+    // For games: primary is obj.principal; secondary is obj.secondaire
+    let primary = (obj && obj.principal !== undefined) ? obj.principal : '-';
+    let secondary = (obj && obj.secondaire !== undefined) ? obj.secondaire : '-';
+
+    // create elements
+    const primaryEl = createPriceElement(primary, false);
+    const secondaryEl = createPriceElement(secondary, true);
+
+    // For PS5-only we want secondary BELOW primary: implement by vertical stacking if only one box
+    // but here we build a column that by default shows both stacked vertically for better spacing
+    const pricesWrap = document.createElement('div'); pricesWrap.className='prices';
+    // We'll create a column look by setting flex-direction column via style
+    pricesWrap.style.flexDirection = 'column';
+    pricesWrap.style.gap = '8px';
+    pricesWrap.style.alignItems = 'center';
+    pricesWrap.appendChild(primaryEl);
+    pricesWrap.appendChild(secondaryEl);
+    box.appendChild(pricesWrap);
+
+    const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
+    const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
+    box.appendChild(l1); box.appendChild(l2);
+
+    if(secondary === '-' || secondary === null){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
+
+    return box;
+  }
+
+  // render function
   function render(){
     grid.innerHTML = '';
     msg.innerHTML = '';
     const q = search.value.trim().toLowerCase();
     const platFilter = filter.value;
-    // ordering: desired order: ps+ essential / extra / premium then games order defined in JSON
-    const ordered = data.slice(); // respect JSON order
-    let shown=0;
-    for(const item of ordered){
-      // platform filter
-      if(platFilter!=='all'){
-        if(item.category==='subscription'){
-          if(!hasPlatform(item, platFilter)) continue;
+    let shown = 0;
+
+    // desired order: keep the order in JSON (we put PS+ subs first)
+    for(const item of data){
+      // platform filter: if user filtered to specific platform, we hide items which don't have it
+      if(platFilter !== 'all'){
+        if(item.category === 'subscription'){
+          // subscription always show because prices object has both ps5/ps4; but still check existence
+          if(!item.prices || !item.prices[platFilter]) continue;
         } else {
-          if(!hasPlatform(item, platFilter)) continue;
+          if(!item.platforms || !item.platforms[platFilter]) continue;
         }
       }
+
       // search filter
       if(q){
         const inName = item.name && item.name.toLowerCase().includes(q);
         const inId = item.id && item.id.toLowerCase().includes(q);
-        const inKeywords = (item.keywords || []).join(' ').toLowerCase().includes(q);
-        if(!(inName || inId || inKeywords)) continue;
+        const insideKeywords = (item.keywords || []).join(' ').toLowerCase().includes(q);
+        if(!(inName || inId || insideKeywords)) continue;
       }
-      // create card
-      const card = createCard(item);
+
+      // create and append card
+      const card = buildCard(item);
       grid.appendChild(card);
       shown++;
     }
-    if(shown===0) msg.innerHTML = '<span class="small-note">Aucun résultat</span>';
+
+    if(shown === 0) msg.innerHTML = '<div class="error">Aucun résultat</div>';
   }
 
   // initial render
@@ -227,10 +294,12 @@
   // events
   search.addEventListener('input', ()=>render());
   filter.addEventListener('change', ()=>render());
-  // light/dark mode toggle
+
+  // mode toggle
   modeBtn.addEventListener('click', ()=>{
     document.documentElement.classList.toggle('light');
-    modeBtn.textContent = document.documentElement.classList.contains('light') ? 'Mode nuit' : 'Mode clair';
+    const isLight = document.documentElement.classList.contains('light');
+    modeBtn.textContent = isLight ? 'Mode nuit' : 'Mode clair';
   });
 
 })();
