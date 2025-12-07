@@ -3,10 +3,7 @@
     "sku": "PSPLUS-ESSENTIAL",
     "title": "PS+ Essential",
     "keywords": ["ps+", "essential", "ps plus essential"],
-    "prices": {
-      "ps5": { "primary": "500 DHS", "secondary": "100 DHS" },
-      "ps4": { "primary": "250 DHS" }
-    },
+    "prices": { "ps5": { "primary": "—", "secondary": "" }, "ps4": { "primary": "—" } },
     "image": "assets/psplus-essential.png",
     "priority": 1
   },
@@ -14,10 +11,7 @@
     "sku": "PSPLUS-EXTRA",
     "title": "PS+ Extra",
     "keywords": ["ps+", "extra", "ps plus extra"],
-    "prices": {
-      "ps5": { "primary": "750 DHS", "secondary": "400 DHS" },
-      "ps4": { "primary": "400 DHS" }
-    },
+    "prices": { "ps5": { "primary": "—", "secondary": "" }, "ps4": { "primary": "—" } },
     "image": "assets/psplus-extra.png",
     "priority": 1
   },
@@ -25,10 +19,7 @@
     "sku": "PSPLUS-PREMIUM",
     "title": "PS+ Premium",
     "keywords": ["ps+", "premium", "ps plus premium"],
-    "prices": {
-      "ps5": { "primary": "850 DHS", "secondary": "450 DHS" },
-      "ps4": { "primary": "500 DHS" }
-    },
+    "prices": { "ps5": { "primary": "—", "secondary": "" }, "ps4": { "primary": "—" } },
     "image": "assets/psplus-premium.png",
     "priority": 1
   },
@@ -37,40 +28,143 @@
     "sku": "FC26",
     "title": "EA SPORTS FC 26",
     "keywords": ["fc26", "ea sports", "football", "ea"],
-    "prices": {
-      "ps5": { "primary": "250 DHS", "secondary": "200 DHS" },
-      "ps4": { "primary": "200 DHS" }
-    },
+    "prices": { "ps5": { "primary": "250 DHS", "secondary": "200 DHS" }, "ps4": { "primary": "200 DHS" } },
     "image": "assets/fc26.png"
   },
+
+  {
+    "sku": "GHOST-YOTEI",
+    "title": "Ghost Of Yotei",
+    "keywords": ["ghost", "yotei", "ghost of yotei"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/ghost-yotei.png"
+  },
+
+  {
+    "sku": "CALL-OF-DUTY-7",
+    "title": "Call of Duty 7",
+    "keywords": ["cod7", "call of duty 7", "call of duty"],
+    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
+    "image": "assets/cod7.png"
+  },
+
+  {
+    "sku": "BATTLEFIELD-6",
+    "title": "Battlefield 6",
+    "keywords": ["battlefield", "bf6", "battlefield 6"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/battlefield6.png"
+  },
+
+  {
+    "sku": "BLACK-MYTH-WUKONG",
+    "title": "Black Myth: Wukong",
+    "keywords": ["black myth", "wukong", "black myth wukong"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/black-myth-wukong.png"
+  },
+
+  {
+    "sku": "MGS-DELTA",
+    "title": "Metal Gear Solid Delta: Snake Eater",
+    "keywords": ["metal gear", "mgs delta", "snake eater"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/mgs-delta.png"
+  },
+
+  {
+    "sku": "ASSASSIN-LEGACY",
+    "title": "Assassin's Creed Legendary Collection",
+    "keywords": ["assassin's creed", "legendary collection"],
+    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
+    "image": "assets/assassin-legacy.png"
+  },
+
+  {
+    "sku": "FORZA-HORIZON-5",
+    "title": "Forza Horizon 5",
+    "keywords": ["forza", "forza horizon 5", "fh5"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/forza5.png"
+  },
+
+  {
+    "sku": "THE-LAST-OF-US-1",
+    "title": "The Last of Us Part I",
+    "keywords": ["the last of us", "tlou1", "last of us part 1"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/tlou1.png"
+  },
+
+  {
+    "sku": "THE-LAST-OF-US-2",
+    "title": "The Last of Us Part II",
+    "keywords": ["tlou2", "the last of us 2", "last of us part 2"],
+    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
+    "image": "assets/tlou2.png"
+  },
+
+  {
+    "sku": "ARC-RAIDERS",
+    "title": "Arc Raiders",
+    "keywords": ["arc raiders", "arc"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/arc-raiders.png"
+  },
+
+  {
+    "sku": "ASSASSIN-SHADOWS",
+    "title": "Assassin's Creed Shadows",
+    "keywords": ["assassin shadows", "ac shadows"],
+    "prices": { "ps5": { "primary": "", "secondary": "" } },
+    "image": "assets/assassin-shadows.png"
+  },
+
+  {
+    "sku": "GHOST-TSUSHIMA",
+    "title": "Ghost Of Tsushima",
+    "keywords": ["ghost tsushima", "tsushima"],
+    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
+    "image": "assets/ghost-tsushima.png"
+  },
+
+  {
+    "sku": "HOLLOW-SILKSONG",
+    "title": "Hollow Knight: Silksong",
+    "keywords": ["hollow knight", "silksong"],
+    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
+    "image": "assets/hollow-silksong.png"
+  },
+
+  {
+    "sku": "MAFIA-TRILOGY",
+    "title": "Mafia Trilogy",
+    "keywords": ["mafia trilogy", "mafia"],
+    "prices": { "ps5": { "primary": "", "secondary": "" }, "ps4": { "primary": "" } },
+    "image": "assets/mafia-trilogy.png"
+  },
+
   {
     "sku": "GTA5",
     "title": "GTA V",
     "keywords": ["gta", "gta5", "grand theft auto", "rockstar"],
-    "prices": {
-      "ps5": { "primary": "150 DHS", "secondary": "100 DHS" },
-      "ps4": { "primary": "120 DHS" }
-    },
+    "prices": { "ps5": { "primary": "150 DHS", "secondary": "100 DHS" }, "ps4": { "primary": "120 DHS" } },
     "image": "assets/gta5.png"
   },
+
   {
     "sku": "RDR2",
     "title": "Red Dead Redemption 2",
     "keywords": ["rdr2", "red dead", "cowboy", "rockstar"],
-    "prices": {
-      "ps5": { "primary": "150 DHS", "secondary": "100 DHS" },
-      "ps4": { "primary": "150 DHS" }
-    },
+    "prices": { "ps5": { "primary": "200 DHS", "secondary": "150 DHS" }, "ps4": { "primary": "180 DHS" } },
     "image": "assets/rdr2.png"
   },
+
   {
     "sku": "ELDEN",
     "title": "Elden Ring",
     "keywords": ["elden", "elden ring", "fromsoftware"],
-    "prices": {
-      "ps5": { "primary": "260 DHS", "secondary": "220 DHS" },
-      "ps4": { "primary": "160 DHS" }
-    },
+    "prices": { "ps5": { "primary": "220 DHS", "secondary": "170 DHS" }, "ps4": { "primary": "200 DHS" } },
     "image": "assets/eldenring.png"
   }
 ]
