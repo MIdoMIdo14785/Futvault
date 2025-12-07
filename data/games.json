@@ -1,220 +1,169 @@
-{
-  "products": [
-    {
-      "id": "psplus-essential",
-      "name": "PS+ Essential",
-      "category": "subscription",
-      "durations": ["6m", "12m"],
-      "image": "/assets/psplus-essential-1200.webp",
-      "prices": {
-        "ps5": {
-          "principal": { "6m": 500, "12m": 500 },
-          "secondaire": { "6m": 100, "12m": 100 }
-        },
-        "ps4": {
-          "principal": { "6m": 250, "12m": 250 },
-          "secondaire": null
-        }
-      }
-    },
-    {
-      "id": "psplus-extra",
-      "name": "PS+ Extra",
-      "category": "subscription",
-      "durations": ["6m", "12m"],
-      "image": "/assets/psplus-extra-1200.webp",
-      "prices": {
-        "ps5": {
-          "principal": { "6m": 300, "12m": 300 },
-          "secondaire": { "6m": "-", "12m": "-" }
-        },
-        "ps4": {
-          "principal": { "6m": "-", "12m": "-" },
-          "secondaire": null
-        }
-      }
-    },
-    {
-      "id": "psplus-premium",
-      "name": "PS+ Premium",
-      "category": "subscription",
-      "durations": ["6m", "12m"],
-      "image": "/assets/psplus-premium-1200.webp",
-      "prices": {
-        "ps5": {
-          "principal": { "6m": 380, "12m": 380 },
-          "secondaire": { "6m": "-", "12m": "-" }
-        },
-        "ps4": {
-          "principal": { "6m": "-", "12m": "-" },
-          "secondaire": null
-        }
-      }
-    },
-
-    /* ========================
-       🎮 JEUX VIDÉO
-       ======================== */
-
-    {
-      "id": "fc26",
-      "name": "EA FC 26",
-      "category": "game",
-      "image": "/assets/fc26-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" },
-        "ps4": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "gta5",
-      "name": "GTA V",
-      "category": "game",
-      "image": "/assets/gta5-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" },
-        "ps4": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "rdr2",
-      "name": "Red Dead Redemption 2",
-      "category": "game",
-      "image": "/assets/rdr2-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" },
-        "ps4": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "elden-ring",
-      "name": "Elden Ring",
-      "category": "game",
-      "image": "/assets/eldenring-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" },
-        "ps4": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "ghost-yotei",
-      "name": "Ghost of Yotei",
-      "category": "game",
-      "image": "/assets/ghost-yotei-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "battlefield6",
-      "name": "Battlefield 6",
-      "category": "game",
-      "image": "/assets/battlefield6-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "wukong",
-      "name": "Black Myth Wukong",
-      "category": "game",
-      "image": "/assets/black-myth-wukong-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "metal-gear-delta",
-      "name": "Metal Gear Solid Δ",
-      "category": "game",
-      "image": "/assets/mgs-delta-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "forza5",
-      "name": "Forza Horizon 5",
-      "category": "game",
-      "image": "/assets/forza5-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "tlou1",
-      "name": "The Last of Us Part I",
-      "category": "game",
-      "image": "/assets/tlou1-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "tlou2",
-      "name": "The Last of Us Part II Remastered",
-      "category": "game",
-      "image": "/assets/tlou2-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "arc-raiders",
-      "name": "ARC Raiders",
-      "category": "game",
-      "image": "/assets/arc-raiders-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "assassin-shadows",
-      "name": "Assassin’s Creed Shadows",
-      "category": "game",
-      "image": "/assets/assassin-shadows-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "assassin-legendary",
-      "name": "Assassin’s Creed Legendary Collection",
-      "category": "game",
-      "image": "/assets/assassin-legendary-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" },
-        "ps4": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "ghost-tsushima",
-      "name": "Ghost of Tsushima",
-      "category": "game",
-      "image": "/assets/ghost-tsushima-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" },
-        "ps4": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "silksong",
-      "name": "Hollow Knight Silksong",
-      "category": "game",
-      "image": "/assets/hollow-silksong-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" }
-      }
-    },
-    {
-      "id": "mafia-trilogy",
-      "name": "Mafia Trilogy",
-      "category": "game",
-      "image": "/assets/mafia-trilogy-1200.webp",
-      "platforms": {
-        "ps5": { "principal": "-", "secondaire": "-" },
-        "ps4": { "principal": "-", "secondaire": "-" }
+[
+  {
+    "id": "psplus-essential",
+    "name": "PS+ Essential",
+    "category": "subscription",
+    "durations": ["6m", "12m"],
+    "image": "/assets/psplus-essential-1200.webp",
+    "prices": {
+      "ps5": {
+        "principal": { "6m": 250, "12m": 500 },
+        "secondaire": { "6m": 100, "12m": 100 }
+      },
+      "ps4": {
+        "principal": { "6m": 250, "12m": 250 },
+        "secondaire": { "6m": "-", "12m": "-" }
       }
     }
-  ]
-}
+  },
+  {
+    "id": "psplus-extra",
+    "name": "PS+ Extra",
+    "category": "subscription",
+    "durations": ["6m", "12m"],
+    "image": "/assets/psplus-extra-1200.webp",
+    "prices": {
+      "ps5": {
+        "principal": { "6m": 300, "12m": 300 },
+        "secondaire": { "6m": "-", "12m": "-" }
+      },
+      "ps4": {
+        "principal": { "6m": "-", "12m": "-" },
+        "secondaire": { "6m": "-", "12m": "-" }
+      }
+    }
+  },
+  {
+    "id": "psplus-premium",
+    "name": "PS+ Premium",
+    "category": "subscription",
+    "durations": ["6m", "12m"],
+    "image": "/assets/psplus-premium-1200.webp",
+    "prices": {
+      "ps5": {
+        "principal": { "6m": 380, "12m": 380 },
+        "secondaire": { "6m": "-", "12m": "-" }
+      },
+      "ps4": {
+        "principal": { "6m": "-", "12m": "-" },
+        "secondaire": { "6m": "-", "12m": "-" }
+      }
+    }
+  },
+
+
+
+  {
+    "id": "fc26",
+    "name": "EA FC 26",
+    "category": "game",
+    "image": "/assets/fc26-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" },
+      "ps4": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "gta5",
+    "name": "GTA V",
+    "category": "game",
+    "image": "/assets/gta5-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" },
+      "ps4": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "rdr2",
+    "name": "Red Dead Redemption 2",
+    "category": "game",
+    "image": "/assets/rdr2-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" },
+      "ps4": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "eldenring",
+    "name": "Elden Ring",
+    "category": "game",
+    "image": "/assets/eldenring-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" },
+      "ps4": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "ghost-yotei",
+    "name": "Ghost of Yotei",
+    "category": "game",
+    "image": "/assets/ghost-yotei-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "battlefield6",
+    "name": "Battlefield 6",
+    "category": "game",
+    "image": "/assets/battlefield6-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "blackmyth-wukong",
+    "name": "Black Myth: Wukong",
+    "category": "game",
+    "image": "/assets/black-myth-wukong-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "metal-gear-delta",
+    "name": "Metal Gear Solid Delta: Snake Eater",
+    "category": "game",
+    "image": "/assets/mgs-delta-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "forza5",
+    "name": "Forza Horizon 5",
+    "category": "game",
+    "image": "/assets/forza5-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "arc-raiders",
+    "name": "Arc Raiders",
+    "category": "game",
+    "image": "/assets/arc-raiders-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" }
+    }
+  },
+
+  {
+    "id": "ac-shadows",
+    "name": "Assassin's Creed Shadows",
+    "category": "game",
+    "image": "/assets/ac-shadows-1200.webp",
+    "platforms": {
+      "ps5": { "principal": "-", "secondaire": "-" }
+    }
+  }
+]
