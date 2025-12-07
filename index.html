@@ -20,31 +20,71 @@
   .logo img{width:86%;height:86%;object-fit:cover;transform:scale(0.95)}
   h1{margin:0;font-size:20px}
   .lead{color:var(--muted);font-size:13px;margin-top:4px}
-  .controls{display:flex;gap:12px;margin:18px 0;align-items:center;justify-content:space-between}
-  .search{flex:1;display:flex;gap:8px}
+  .controls{display:flex;gap:12px;margin:18px 0;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .search{flex:1;display:flex;gap:8px;min-width:260px}
   input.searchbox{
     flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);
     background:rgba(255,255,255,0.02);color:var(--text);box-shadow:0 4px 12px rgba(2,6,12,0.35);min-width:220px
   }
   select.platform{padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:none;color:var(--text)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-top:18px;align-items:start}
-  .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(2,6,12,0.6);display:flex;flex-direction:column;gap:12px;min-height:520px}
+  .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(2,6,12,0.6);display:flex;flex-direction:column;gap:12px;min-height:520px;overflow:visible}
   .cover{width:100%;height:320px;border-radius:10px;background:linear-gradient(180deg,#021024,#02101a);display:flex;align-items:center;justify-content:center;overflow:hidden}
   .cover img{width:100%;height:100%;object-fit:cover;border-radius:8px}
   .title{font-weight:700;font-size:16px;margin-top:6px}
   .durations{display:flex;gap:8px;justify-content:center;margin:4px 0}
   .durations button{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:var(--text);cursor:pointer}
-  .platforms{display:flex;gap:12px;align-items:flex-end;justify-content:center;margin-top:6px}
-  .plat{background:var(--soft);border-radius:12px;padding:14px;min-width:140px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
+  /* ---------- FIX PRICES LAYOUT ---------- */
+  .plat{
+    background:var(--soft);
+    border-radius:12px;
+    padding:18px 14px;
+    width: 100%;
+    max-width: 240px;
+    min-width: 160px;
+    box-sizing: border-box;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    margin: 0 auto;
+    position: relative;
+  }
+  .prices{
+    display:flex;
+    gap:14px;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:nowrap;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .price{
+    display:inline-block;
+    padding:12px 18px;
+    border-radius:12px;
+    background:var(--primary);
+    color:#072033;
+    font-weight:700;
+    min-width:110px;
+    max-width:100%;
+    box-sizing:border-box;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .price.secondary{ background:var(--secondary); color:#072033; }
+  .pssingle{ max-width:240px; margin: 0 auto; }
   .plat h4{margin:0;font-size:14px;color:var(--muted)}
-  .prices{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
-  .price{padding:12px 20px;border-radius:12px;background:var(--primary);color:#072033;font-weight:700;min-width:120px;box-shadow:0 10px 18px rgba(2,6,12,0.35);text-align:center}
-  .price.secondary{background:var(--secondary);color:#072033}
   .label{font-size:13px;color:var(--muted);margin-top:6px}
-  .pssingle{margin:0 auto}
+  .ps-single-stack{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
   @media(max-width:520px){
     .cover{height:220px}
-    .price{min-width:110px;padding:10px 14px}
+    .plat{ max-width: 100%; min-width: 120px; padding:12px }
+    .price{ min-width:90px; padding:10px 12px }
+    .prices{ gap:8px }
+    .grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
   }
   :root.light{--bg1:#e9f2f4;--bg2:#e6eef3;--card:#ffffff;--soft:#f6f7f9;--text:#0b1724;--muted:#6b7380}
   .error{color:#ff6b6b;font-weight:700}
@@ -109,7 +149,7 @@
     const el = document.createElement('div');
     el.className = 'price' + (isSecondary ? ' secondary' : '');
     el.textContent = formatPrice(value);
-    el.style.minWidth = '120px';
+    el.style.minWidth = '110px';
     el.style.boxSizing = 'border-box';
     el.style.textAlign = 'center';
     return el;
@@ -121,6 +161,12 @@
 
     let primary = '-';
     if(obj && obj.principal && obj.principal[duration] !== undefined) primary = obj.principal[duration];
+    let secondary = '-';
+    if(obj && obj.secondaire && obj.secondaire[duration] !== undefined) secondary = obj.secondaire[duration];
+
+    // For subscriptions, we show primary and secondary side-by-side if both exist; otherwise hide secondary
+    const pricesRow = document.createElement('div'); pricesRow.className = 'prices';
+
     const primWrap = document.createElement('div');
     primWrap.style.display = 'flex';
     primWrap.style.flexDirection = 'column';
@@ -128,11 +174,8 @@
     primWrap.style.gap = '6px';
     const primaryEl = createPriceElement(primary, false);
     const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
-    primWrap.appendChild(primaryEl);
-    primWrap.appendChild(l1);
+    primWrap.appendChild(primaryEl); primWrap.appendChild(l1);
 
-    let secondary = '-';
-    if(obj && obj.secondaire && obj.secondaire[duration] !== undefined) secondary = obj.secondaire[duration];
     const secWrap = document.createElement('div');
     secWrap.style.display = 'flex';
     secWrap.style.flexDirection = 'column';
@@ -140,16 +183,10 @@
     secWrap.style.gap = '6px';
     const secondaryEl = createPriceElement(secondary, true);
     const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
-    secWrap.appendChild(secondaryEl);
-    secWrap.appendChild(l2);
+    secWrap.appendChild(secondaryEl); secWrap.appendChild(l2);
 
-    const pricesRow = document.createElement('div');
-    pricesRow.style.display = 'flex';
-    pricesRow.style.gap = '12px';
-    pricesRow.style.justifyContent = 'center';
     pricesRow.appendChild(primWrap);
     pricesRow.appendChild(secWrap);
-
     box.appendChild(pricesRow);
 
     if(secondary === '-' || secondary === null){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
@@ -157,10 +194,11 @@
     return box;
   }
 
-  function buildGameBox(label, obj){
-    const box = document.createElement('div'); box.className='plat';
+  function buildGameBoxSingle(label, obj){
+    const box = document.createElement('div'); box.className='plat pssingle';
     const h = document.createElement('h4'); h.textContent = label; box.appendChild(h);
 
+    // primary
     let primary = (obj && obj.principal !== undefined) ? obj.principal : '-';
     const primWrap = document.createElement('div');
     primWrap.style.display = 'flex';
@@ -169,9 +207,9 @@
     primWrap.style.gap = '6px';
     const primaryEl = createPriceElement(primary, false);
     const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
-    primWrap.appendChild(primaryEl);
-    primWrap.appendChild(l1);
+    primWrap.appendChild(primaryEl); primWrap.appendChild(l1);
 
+    // secondary (stacked below)
     let secondary = (obj && obj.secondaire !== undefined) ? obj.secondaire : '-';
     const secWrap = document.createElement('div');
     secWrap.style.display = 'flex';
@@ -180,22 +218,32 @@
     secWrap.style.gap = '6px';
     const secondaryEl = createPriceElement(secondary, true);
     const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
-    secWrap.appendChild(secondaryEl);
-    secWrap.appendChild(l2);
+    secWrap.appendChild(secondaryEl); secWrap.appendChild(l2);
 
-    const wrap = document.createElement('div');
-    wrap.style.display = 'flex';
-    wrap.style.flexDirection = 'column';
-    wrap.style.gap = '10px';
-    wrap.style.alignItems = 'center';
-    wrap.appendChild(primWrap);
-    wrap.appendChild(secWrap);
+    const container = document.createElement('div'); container.className='ps-single-stack';
+    container.appendChild(primWrap);
+    container.appendChild(secWrap);
 
-    box.appendChild(wrap);
+    box.appendChild(container);
 
     if(secondary === '-' || secondary === null){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
 
     return box;
+  }
+
+  function buildGameBoxSide(labelLeft, leftObj, labelRight, rightObj){
+    // create a wrapper that looks like two plat boxes horizontally for consistent visual when both platforms exist
+    const wrapper = document.createElement('div');
+    wrapper.style.display = 'flex';
+    wrapper.style.gap = '12px';
+    wrapper.style.justifyContent = 'center';
+    wrapper.style.width = '100%';
+
+    const left = buildGameBoxSingle(labelLeft, leftObj);
+    const right = buildGameBoxSingle(labelRight, rightObj);
+    wrapper.appendChild(left);
+    wrapper.appendChild(right);
+    return wrapper;
   }
 
   function buildCard(item){
@@ -235,19 +283,16 @@
       const hasPs5 = item.platforms && item.platforms.ps5;
       const hasPs4 = item.platforms && item.platforms.ps4;
       if(hasPs5 && hasPs4){
-        platformsWrap.appendChild(buildGameBox('PS5', item.platforms.ps5));
-        platformsWrap.appendChild(buildGameBox('PS4', item.platforms.ps4));
+        // side-by-side two plat boxes
+        platformsWrap.appendChild(buildGameBoxSide('PS5', item.platforms.ps5, 'PS4', item.platforms.ps4));
       } else if(hasPs5){
-        const b = buildGameBox('PS5', item.platforms.ps5);
-        b.classList.add('pssingle');
+        const b = buildGameBoxSingle('PS5', item.platforms.ps5);
         platformsWrap.appendChild(b);
       } else if(hasPs4){
-        const b = buildGameBox('PS4', item.platforms.ps4);
-        b.classList.add('pssingle');
+        const b = buildGameBoxSingle('PS4', item.platforms.ps4);
         platformsWrap.appendChild(b);
       } else {
-        const none = document.createElement('div'); none.textContent='No platform info';
-        none.style.color = 'var(--muted)'; platformsWrap.appendChild(none);
+        const none = document.createElement('div'); none.textContent='No platform info'; none.style.color = 'var(--muted)'; platformsWrap.appendChild(none);
       }
     }
 
