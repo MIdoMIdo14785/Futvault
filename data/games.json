@@ -1,7 +1,42 @@
 [
   {
+    "sku": "PSPLUS-ESSENTIAL",
+    "title": "PS+ Essential",
+    "keywords": ["ps+", "essential", "ps plus essential"],
+    "prices": {
+      "ps5": { "primary": "—", "secondary": "" },
+      "ps4": { "primary": "—" }
+    },
+    "image": "assets/psplus-essential.png",
+    "priority": 1
+  },
+  {
+    "sku": "PSPLUS-EXTRA",
+    "title": "PS+ Extra",
+    "keywords": ["ps+", "extra", "ps plus extra"],
+    "prices": {
+      "ps5": { "primary": "—", "secondary": "" },
+      "ps4": { "primary": "—" }
+    },
+    "image": "assets/psplus-extra.png",
+    "priority": 1
+  },
+  {
+    "sku": "PSPLUS-PREMIUM",
+    "title": "PS+ Premium",
+    "keywords": ["ps+", "premium", "ps plus premium"],
+    "prices": {
+      "ps5": { "primary": "—", "secondary": "" },
+      "ps4": { "primary": "—" }
+    },
+    "image": "assets/psplus-premium.png",
+    "priority": 1
+  },
+
+  {
     "sku": "FC26",
     "title": "EA SPORTS FC 26",
+    "keywords": ["fc26", "ea sports", "football", "ea"],
     "prices": {
       "ps5": { "primary": "250 DHS", "secondary": "200 DHS" },
       "ps4": { "primary": "200 DHS" }
@@ -11,17 +46,19 @@
   {
     "sku": "GTA5",
     "title": "GTA V",
+    "keywords": ["gta", "gta5", "grand theft auto", "rockstar"],
     "prices": {
-      "ps5": { "primary": "", "secondary": "" },
-      "ps4": { "primary": "150 DHS" }
+      "ps5": { "primary": "150 DHS", "secondary": "100 DHS" },
+      "ps4": { "primary": "120 DHS" }
     },
     "image": "assets/gta5.png"
   },
   {
     "sku": "RDR2",
     "title": "Red Dead Redemption 2",
+    "keywords": ["rdr2", "red dead", "cowboy", "rockstar"],
     "prices": {
-      "ps5": { "primary": "", "secondary": "" },
+      "ps5": { "primary": "200 DHS", "secondary": "150 DHS" },
       "ps4": { "primary": "180 DHS" }
     },
     "image": "assets/rdr2.png"
@@ -29,10 +66,11 @@
   {
     "sku": "ELDEN",
     "title": "Elden Ring",
+    "keywords": ["elden", "elden ring", "fromsoftware"],
     "prices": {
       "ps5": { "primary": "220 DHS", "secondary": "170 DHS" },
-      "ps4": { "primary": "" }
+      "ps4": { "primary": "200 DHS" }
     },
-    "image": "assets/elden.png"
+    "image": "assets/eldenring.png"
   }
 ]
