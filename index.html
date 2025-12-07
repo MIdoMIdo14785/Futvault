@@ -32,8 +32,9 @@
   .card{background:var(--card);border-radius:14px;overflow:visible;box-shadow:0 10px 25px rgba(0,0,0,0.12);display:flex;flex-direction:column}
   .cover{width:100%;height:360px;display:flex;align-items:center;justify-content:center;background:transparent;padding:18px;border-bottom:1px solid rgba(0,0,0,0.04)}
   .cover img{max-width:100%;max-height:100%;object-fit:cover;border-radius:18px;box-shadow:0 6px 18px rgba(0,0,0,0.08);background:transparent}
-  .card-body{padding:14px}
-  .title{font-weight:800;font-size:15px;margin:6px 0 0;color:var(--text)}
+  .card-body{padding:14px;display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .title{font-weight:800;font-size:15px;margin:0;color:var(--text);text-align:left}
+  .title.center{ text-align:center; }
   .prices-row{display:flex;gap:18px;padding:12px;justify-content:space-between}
   .box{background:rgba(255,255,255,0.92);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid rgba(0,0,0,0.06)}
   [data-theme="dark"] .box{background:#0b1220;border:1px solid rgba(255,255,255,0.04)}
@@ -47,12 +48,13 @@
   .badge.primary{background:var(--primary-color);color:#042038}
   .badge.secondary{background:var(--secondary-color);color:#042038}
   .price-label-under{font-size:13px;color:var(--muted-2)}
-  /* term buttons centered + full label */
-  .term-area{display:flex;justify-content:center;margin-top:6px}
-  .terms-row{display:flex;gap:8px}
+  /* term buttons now in card-body, centered and big labels */
+  .term-area-card{display:flex;justify-content:center;margin-top:2px;margin-bottom:6px}
+  .terms-row{display:flex;gap:10px}
   .term-btn{
-    padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);
+    padding:10px 16px;border-radius:10px;border:1px solid rgba(0,0,0,0.08);
     background:transparent;color:var(--text);font-weight:700;font-size:14px;cursor:pointer;
+    min-width:92px;text-align:center;
   }
   .term-btn.active{background:var(--accent);color:#fff;border-color:transparent}
   /* theme toggle */
@@ -128,18 +130,14 @@ function populatePlatform(){
   sel.innerHTML = '<option value="">Toutes plateformes</option>' + [...set].map(p=>`<option value="${p}">${p}</option>`).join('');
 }
 
-/* helper: build responsive webp img tag from base (image field in JSON is base path without suffix)
-   naming convention expected: <base>-400.webp, <base>-800.webp, <base>-1200.webp
-   fallback: use <base>.webp if sizes not available */
+/* build responsive webp img tag from base (image field is base path without suffix) */
 function buildImgHtml(base, alt){
-  // ensure base is string and doesn't have extension
   if(!base) base='assets/placeholder';
   base = base.replace(/\.(png|jpg|jpeg|webp)$/i,'');
   const src800 = base + '-800.webp';
   const src400 = base + '-400.webp';
   const src1200 = base + '-1200.webp';
   const sizes = '(max-width:600px) 100vw, 400px';
-  // use srcset and lazy loading
   return `<picture>
     <source type="image/webp" srcset="${src400} 400w, ${src800} 800w, ${src1200} 1200w" sizes="${sizes}">
     <img loading="lazy" src="${src800}" srcset="${src400} 400w, ${src800} 800w, ${src1200} 1200w" sizes="${sizes}" alt="${escapeHtml(alt)}" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
@@ -201,7 +199,6 @@ function render(){
     if(ps4){
       if(ps4.terms && typeof ps4.terms === 'object'){
         ps4TermsList = Object.keys(ps4.terms);
-        // pick same term as PS5 if available; else selectedTerm or 12m default
         const preferTerm = selectedTerm[r.sku] || (ps5TermsList.includes('12m') ? '12m' : (ps4TermsList.includes('12m')? '12m' : ps4TermsList[0]));
         const td = ps4.terms[preferTerm] || {};
         ps4Primary = td.primary && td.primary.toString().trim()!=='' ? td.primary : '—';
@@ -212,19 +209,17 @@ function render(){
       }
     }
 
-    // ensure if PS5 has terms and selectedTerm not set -> default to 12m
     if(ps5TermsList.length && !selectedTerm[r.sku]){
       selectedTerm[r.sku] = (ps5TermsList.includes('12m') ? '12m' : ps5TermsList[0]);
     }
 
     const ps5BoxClass = hasPS4 ? 'box half' : 'box full';
 
-    // term buttons - combined: if either PS5 or PS4 has terms, create the set (union) and default to 12m
     const allTerms = Array.from(new Set([...(ps5TermsList||[]), ...(ps4TermsList||[])]));
     let termButtonsHtml = '';
     if(allTerms.length){
       const activeTerm = selectedTerm[r.sku] || (allTerms.includes('12m') ? '12m' : allTerms[0]);
-      termButtonsHtml = `<div class="term-area"><div class="terms-row">` +
+      termButtonsHtml = `<div class="term-area-card"><div class="terms-row">` +
         allTerms.map(t=>{
           const label = (t==='12m' ? '12 mois' : (t==='6m' ? '6 mois' : t));
           const active = (activeTerm === t) ? 'active' : '';
@@ -247,6 +242,12 @@ function render(){
     return `
       <div class="card">
         <div class="cover">${coverHtml}</div>
+
+        <div class="card-body">
+          ${termButtonsHtml}
+          <div class="title center">${escapeHtml(r.title)}</div>
+        </div>
+
         <div class="prices-row">
           <div class="${ps5BoxClass}">
             <div class="platform">PS5</div>
@@ -259,12 +260,11 @@ function render(){
                 <div class="badge secondary">${escapeHtml(ps5Secondary)}</div>
                 <div class="price-label-under">Secondaire</div>
               </div>
-              ${termButtonsHtml}
             </div>
           </div>
+
           ${ps4Html}
         </div>
-        <div class="card-body"><div class="title">${escapeHtml(r.title)}</div></div>
       </div>
     `;
   }).join('');
