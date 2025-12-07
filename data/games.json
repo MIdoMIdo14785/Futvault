@@ -58,8 +58,8 @@
     "title": "Red Dead Redemption 2",
     "keywords": ["rdr2", "red dead", "cowboy", "rockstar"],
     "prices": {
-      "ps5": { "primary": "200 DHS", "secondary": "150 DHS" },
-      "ps4": { "primary": "180 DHS" }
+      "ps5": { "primary": "150 DHS", "secondary": "100 DHS" },
+      "ps4": { "primary": "150 DHS" }
     },
     "image": "assets/rdr2.png"
   },
@@ -68,8 +68,8 @@
     "title": "Elden Ring",
     "keywords": ["elden", "elden ring", "fromsoftware"],
     "prices": {
-      "ps5": { "primary": "220 DHS", "secondary": "170 DHS" },
-      "ps4": { "primary": "200 DHS" }
+      "ps5": { "primary": "260 DHS", "secondary": "220 DHS" },
+      "ps4": { "primary": "160 DHS" }
     },
     "image": "assets/eldenring.png"
   }
