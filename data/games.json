@@ -4,8 +4,8 @@
     "title": "PS+ Essential",
     "keywords": ["ps+", "essential", "ps plus essential"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "500 DHS", "secondary": "100 DHS" },
+      "ps4": { "primary": "250 DHS" }
     },
     "image": "assets/psplus-essential.png",
     "priority": 1
@@ -15,8 +15,8 @@
     "title": "PS+ Extra",
     "keywords": ["ps+", "extra", "ps plus extra"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "750 DHS", "secondary": "400 DHS" },
+      "ps4": { "primary": "400 DHS" }
     },
     "image": "assets/psplus-extra.png",
     "priority": 1
@@ -26,8 +26,8 @@
     "title": "PS+ Premium",
     "keywords": ["ps+", "premium", "ps plus premium"],
     "prices": {
-      "ps5": { "primary": "—", "secondary": "" },
-      "ps4": { "primary": "—" }
+      "ps5": { "primary": "850 DHS", "secondary": "450 DHS" },
+      "ps4": { "primary": "500 DHS" }
     },
     "image": "assets/psplus-premium.png",
     "priority": 1
