@@ -6,168 +6,122 @@
 <title>FUTVault — Price list</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg-1:#071025; --bg-2:#0b1020;
-    --muted:#9aa4bf; --accent:#ffb020; --accent-2:#0b74ff;
-  }
+  :root{ --bg1:#071025; --bg2:#0b1020; --muted:#9aa4bf; --accent:#ffb020; --accent2:#0b74ff; }
   *{box-sizing:border-box}
-  body{
-    margin:0;font-family:Inter,system-ui,Roboto,Arial;color:#e6eef9;
-    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
-    min-height:100vh;
-  }
-  .wrap{max-width:1100px;margin:30px auto;padding:18px;}
-  header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-  .logo{width:68px;height:68px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+  body{ margin:0; font-family:Inter,system-ui,Roboto,Arial; background:linear-gradient(180deg,var(--bg1),var(--bg2)); color:#e6eef9; min-height:100vh; }
+  .wrap{max-width:1100px;margin:28px auto;padding:18px;}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .logo{width:68px;height:68px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center}
   .logo img{width:100%;height:100%;object-fit:cover}
   h1{margin:0;font-size:20px}
-  .lead{margin:2px 0 0;color:var(--muted);font-size:13px}
-
-  .controls{display:flex;gap:10px;margin:18px 0;align-items:center;flex-wrap:wrap}
-  .search{flex:1;padding:12px;border-radius:10px;border:0;background:rgba(255,255,255,0.03);color:inherit}
-  .select{padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit}
+  .lead{color:var(--muted);font-size:13px;margin-top:4px}
+  .controls{display:flex;gap:10px;margin:18px 0;align-items:center}
+  .search{flex:1;padding:12px;border-radius:10px;border:0;background:rgba(255,255,255,0.03)}
+  .select{padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:8px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6);display:flex;flex-direction:column}
-  .cover{width:100%;height:280px;object-fit:cover;background:#0b1220}
-  .card-body{padding:12px;display:flex;flex-direction:column;gap:10px}
-  .title{font-weight:700;font-size:15px}
-  .meta{font-size:12px;color:var(--muted)}
-  .price-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-  .badges{display:flex;gap:8px}
-  .badge-primary{background:linear-gradient(90deg,#ffd3a1,#ffb020);color:#081025;padding:8px 10px;border-radius:8px;font-weight:800}
-  .badge-secondary{background:rgba(255,255,255,0.06);color:var(--muted);padding:8px 10px;border-radius:8px;font-weight:700}
-  .stock{font-size:13px;color:var(--muted)}
-  .low{color:#ff6b6b;font-weight:800}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6);display:flex;flex-direction:column;position:relative}
+  .cover-wrap{position:relative;overflow:hidden}
+  .cover{width:100%;height:360px;object-fit:cover;display:block}
+  .price-overlay{position:absolute;left:0;right:0;bottom:0;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:linear-gradient(180deg, rgba(2,6,23,0.0), rgba(2,6,23,0.45));}
+  .price-left, .price-right{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:40%}
+  .price-text{background:linear-gradient(90deg,#ffd8a8,#ffb020);color:#081025;padding:8px 12px;border-radius:10px;font-weight:800}
+  .price-text.secondary{background:rgba(255,255,255,0.06);color:var(--muted);font-weight:700}
+  .card-body{padding:12px}
+  .title{font-weight:800;font-size:15px;margin-bottom:6px}
+  .meta{display:none} /* hide platform / sku as requested */
+  .stock{color:var(--muted);font-size:13px}
 
-  .actions{display:flex;gap:8px}
-  .small-btn{padding:8px 10px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+  footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
 
-  /* modal simple */
-  .modal-back{position:fixed;inset:0;background:rgba(2,6,23,0.7);display:none;align-items:center;justify-content:center;z-index:60;padding:20px}
-  .modal{width:100%;max-width:900px;background:linear-gradient(180deg,#071025,#081026);border-radius:10px;padding:16px;display:flex;gap:12px}
-  .modal img{width:320px;height:440px;object-fit:cover;border-radius:8px}
-  .modal .info{flex:1;color:#dbe9ff}
-  .show{display:flex}
-
-  footer{margin-top:20px;color:var(--muted);font-size:13px}
-  @media (max-width:720px){ .cover{height:200px} .modal{flex-direction:column;align-items:center} .modal img{width:100%;height:auto;max-height:420px} }
+  @media (max-width:720px){
+    .cover{height:220px}
+    .price-overlay{flex-direction:column;height:auto;gap:8px;padding:10px}
+    .price-left,.price-right{min-width:100%;flex-direction:row;gap:8px;justify-content:center}
+  }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="logo"><img src="assets/logo.png" alt="FUTVault logo" id="logoImg" /></div>
+      <div class="logo"><img src="assets/logo.png" alt="FUTVault logo" /></div>
       <div>
         <h1>FUTVault — Price list</h1>
         <div class="lead">Catalogue professionnel</div>
       </div>
     </header>
 
-    <!-- Controls: kept only search + platform filter -->
     <div class="controls">
       <input id="q" class="search" placeholder="Rechercher (titre, plateforme, SKU)..." />
       <select id="platform" class="select"><option value="">Toutes plateformes</option></select>
     </div>
 
     <div id="grid" class="grid" aria-live="polite"></div>
-
-    <!-- (footer intentionally minimal; removed editing tips) -->
     <footer></footer>
   </div>
 
-  <!-- Modal -->
-  <div id="modal" class="modal-back" role="dialog" aria-hidden="true">
-    <div class="modal" role="document">
-      <img id="mimg" src="" alt="cover" />
-      <div class="info">
-        <div style="display:flex;gap:10px;align-items:center">
-          <div style="font-weight:800;font-size:20px" id="mtitle"></div>
-          <div style="margin-left:auto;cursor:pointer;color:var(--muted)" id="mclose">Fermer ✕</div>
-        </div>
-        <div id="mmeta" style="margin-top:8px;color:var(--muted)"></div>
-        <div style="margin-top:14px;font-weight:700">Prix</div>
-        <div id="mprices" style="margin-top:8px;display:flex;gap:8px"></div>
-        <div id="mnotes" style="margin-top:12px;color:var(--muted)"></div>
-      </div>
-    </div>
-  </div>
-
 <script>
-const DATA_URL = 'data/games.json';
-let data = [];
+const DATA_URL='data/games.json';
+let data=[];
 
-function fetchData(){
-  return fetch(DATA_URL, {cache:'no-store'}).then(r => {
-    if(!r.ok) throw new Error('Impossible de charger data');
-    return r.json();
-  }).then(j => { data = j; populate(); populatePlatform(); }).catch(e => {
-    document.getElementById('grid').innerHTML = '<div style="color:#ff6b6b">Erreur: '+e.message+'</div>';
-  });
+async function fetchData(){
+  try{
+    const r=await fetch(DATA_URL,{cache:'no-store'});
+    data=await r.json();
+    render();
+    populatePlatform();
+  }catch(e){
+    document.getElementById('grid').innerHTML='<div style="color:#ff6b6b">Erreur chargement data</div>';
+  }
 }
-
 function populatePlatform(){
-  const sel = document.getElementById('platform');
-  const platforms = Array.from(new Set(data.map(d=>d.platform||'').filter(Boolean))).sort();
-  sel.innerHTML = '<option value="">Toutes plateformes</option>' + platforms.map(p=>`<option value="${p}">${p}</option>`).join('');
+  const sel=document.getElementById('platform');
+  const platforms=[...new Set(data.map(x=>x.platform||'').filter(Boolean))].sort();
+  sel.innerHTML='<option value="">Toutes plateformes</option>'+platforms.map(p=>`<option value="${p}">${p}</option>`).join('');
 }
-
-function populate(){
-  const q = document.getElementById('q').value.trim().toLowerCase();
-  const pf = document.getElementById('platform').value;
-  const grid = document.getElementById('grid');
-  const rows = data.filter(d => {
-    if(pf && (d.platform||'').toLowerCase() !== pf.toLowerCase()) return false;
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const pf=document.getElementById('platform').value;
+  const grid=document.getElementById('grid');
+  const rows=data.filter(d=>{
+    if(pf && (d.platform||'').toLowerCase()!==pf.toLowerCase()) return false;
     if(!q) return true;
-    const hay = ((d.title||'')+' '+(d.platform||'')+' '+(d.sku||'')+' '+(d.notes||'')).toLowerCase();
-    return hay.includes(q);
+    return ((d.title||'')+' '+(d.platform||'')+' '+(d.sku||'')+' '+(d.notes||'')).toLowerCase().includes(q);
   });
-  if(!rows.length){ grid.innerHTML = '<div style="color:var(--muted)">Aucun résultat</div>'; return; }
-  grid.innerHTML = rows.map(r => {
-    const low = (r.stock !== undefined && !isNaN(Number(r.stock)) && Number(r.stock) <= 2) ? 'low' : '';
-    const primary = r.price_primary ? r.price_primary : (r.price || '');
-    const secondary = r.price_secondary ? r.price_secondary : '';
+  if(!rows.length){ grid.innerHTML='<div style="color:var(--muted)">Aucun résultat</div>'; return; }
+  grid.innerHTML=rows.map(r=>{
+    const ps5Primary = r.prices?.ps5?.primary || r.price_primary || '';
+    const ps5Secondary = r.prices?.ps5?.secondary || r.price_secondary || '';
+    const ps4Primary = r.prices?.ps4?.primary || (r.platform==='PS4'? r.price_primary : '') || '';
+    const img = r.image || 'assets/fc26.png';
     return `
-      <div class="card" data-sku="${escapeHtml(r.sku||'')}">
-        <img class="cover" src="${escapeHtml(r.image||'assets/fc26.png')}" alt="${escapeHtml(r.title||'')}" loading="lazy" onclick='openModal(${escapeJs(JSON.stringify(r))})' />
-        <div class="card-body">
-          <div><div class="title">${escapeHtml(r.title||'')}</div><div class="meta">${escapeHtml(r.platform||'')} · ${escapeHtml(r.sku||'')}</div></div>
-          <div class="price-row">
-            <div class="badges">
-              <div class="badge-primary">${escapeHtml(primary)}</div>
-              <div class="badge-secondary">${escapeHtml(secondary || '—')}</div>
+      <div class="card">
+        <div class="cover-wrap">
+          <img class="cover" src="${img}" alt="${escapeHtml(r.title)}" loading="lazy" />
+          <div class="price-overlay">
+            <div class="price-left">
+              <div style="font-size:12px;color:var(--muted)">PS5</div>
+              <div class="price-text">${escapeHtml(ps5Primary || '—')}</div>
+              <div class="price-text secondary" style="margin-top:6px">${escapeHtml(ps5Secondary || '—')}</div>
             </div>
-            <div class="stock ${low}">Stock: ${escapeHtml(String(r.stock||'—'))}</div>
+            <div class="price-right">
+              <div style="font-size:12px;color:var(--muted)">PS4</div>
+              <div class="price-text">${escapeHtml(ps4Primary || '—')}</div>
+            </div>
           </div>
+        </div>
+        <div class="card-body">
+          <div class="title">${escapeHtml(r.title)}</div>
+          <div class="stock">Stock: ${escapeHtml(String(r.stock||'—'))}</div>
         </div>
       </div>
     `;
   }).join('');
 }
-
 function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function escapeJs(s){ return String(s||'').replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/\n/g,'\\n'); }
 
-function openModal(objStr){
-  const obj = JSON.parse(objStr);
-  document.getElementById('mimg').src = obj.image || 'assets/fc26.png';
-  document.getElementById('mtitle').textContent = obj.title || '';
-  document.getElementById('mmeta').textContent = (obj.platform||'') + ' · ' + (obj.sku||'');
-  const prices = [];
-  if(obj.price_primary) prices.push(`<div class="badge-primary">${escapeHtml(obj.price_primary)}</div>`);
-  if(obj.price_secondary) prices.push(`<div class="badge-secondary">${escapeHtml(obj.price_secondary)}</div>`);
-  if(!prices.length && obj.price) prices.push(`<div class="badge-primary">${escapeHtml(obj.price)}</div>`);
-  document.getElementById('mprices').innerHTML = prices.join('');
-  document.getElementById('mnotes').textContent = obj.notes || '';
-  document.getElementById('modal').classList.add('show');
-  document.getElementById('modal').setAttribute('aria-hidden','false');
-}
-document.getElementById('mclose').addEventListener('click', ()=> {
-  document.getElementById('modal').classList.remove('show');
-  document.getElementById('modal').setAttribute('aria-hidden','true');
-});
-document.getElementById('q').addEventListener('input', populate);
-document.getElementById('platform').addEventListener('change', populate);
+document.getElementById('q').addEventListener('input',render);
+document.getElementById('platform').addEventListener('change',render);
 
 fetchData();
 </script>
