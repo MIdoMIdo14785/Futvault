@@ -1,14 +1,57 @@
 [
   {
     "sku": "FC26",
-    "title": "EA SPORTS FC 26 (FC26)",
-    "platform": "PS4",
-    "price": "250 DHS (primary) / 200 DHS (secondary)",
-    "price_primary": "250 DHS",
-    "price_secondary": "150 DHS",
+    "title": "EA SPORTS FC 26",
+    "platform": "PS5",
+    "prices": {
+      "ps5": { "primary": "250 DHS", "secondary": "200 DHS" },
+      "ps4": { "primary": "200 DHS", "secondary": "" }
+    },
     "stock": 5,
-    "notes": "Primary = new / Secondary = used. Arabic subtitles available.",
-    "image": "assets/fc266.png",
+    "notes": "",
+    "image": "assets/fc26.png",
+    "link": ""
+  },
+
+  {
+    "sku": "GTA5",
+    "title": "GTA V",
+    "platform": "PS4",
+    "prices": {
+      "ps5": { "primary": "", "secondary": "" },
+      "ps4": { "primary": "150 DHS", "secondary": "" }
+    },
+    "stock": 4,
+    "notes": "",
+    "image": "assets/gta5.png",
+    "link": ""
+  },
+
+  {
+    "sku": "RDR2",
+    "title": "Red Dead Redemption 2",
+    "platform": "PS4",
+    "prices": {
+      "ps5": { "primary": "", "secondary": "" },
+      "ps4": { "primary": "180 DHS", "secondary": "" }
+    },
+    "stock": 3,
+    "notes": "",
+    "image": "assets/rdr2.png",
+    "link": ""
+  },
+
+  {
+    "sku": "ELDEN",
+    "title": "Elden Ring",
+    "platform": "PS5",
+    "prices": {
+      "ps5": { "primary": "220 DHS", "secondary": "170 DHS" },
+      "ps4": { "primary": "", "secondary": "" }
+    },
+    "stock": 2,
+    "notes": "",
+    "image": "assets/elden.png",
     "link": ""
   }
 ]
