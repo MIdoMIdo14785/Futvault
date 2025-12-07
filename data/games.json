@@ -3,7 +3,7 @@
     "id": "psplus-essential",
     "name": "PS+ Essential",
     "category": "subscription",
-    "durations": ["6m", "12m"],
+    "durations": ["6m","12m"],
     "image": "/assets/psplus-essential-1200.webp",
     "prices": {
       "ps5": {
@@ -20,7 +20,7 @@
     "id": "psplus-extra",
     "name": "PS+ Extra",
     "category": "subscription",
-    "durations": ["6m", "12m"],
+    "durations": ["6m","12m"],
     "image": "/assets/psplus-extra-1200.webp",
     "prices": {
       "ps5": {
@@ -37,7 +37,7 @@
     "id": "psplus-premium",
     "name": "PS+ Premium",
     "category": "subscription",
-    "durations": ["6m", "12m"],
+    "durations": ["6m","12m"],
     "image": "/assets/psplus-premium-1200.webp",
     "prices": {
       "ps5": {
@@ -50,63 +50,55 @@
       }
     }
   },
-
-
-
   {
     "id": "fc26",
-    "name": "EA FC 26",
+    "name": "EA SPORTS FC 26",
     "category": "game",
     "image": "/assets/fc26-1200.webp",
     "platforms": {
-      "ps5": { "principal": "-", "secondaire": "-" },
-      "ps4": { "principal": "-", "secondaire": "-" }
+      "ps5": { "principal": 250, "secondaire": 200 },
+      "ps4": { "principal": 200, "secondaire": "-" }
     }
   },
-
   {
     "id": "gta5",
     "name": "GTA V",
     "category": "game",
     "image": "/assets/gta5-1200.webp",
     "platforms": {
-      "ps5": { "principal": "-", "secondaire": "-" },
-      "ps4": { "principal": "-", "secondaire": "-" }
+      "ps5": { "principal": 150, "secondaire": 100 },
+      "ps4": { "principal": 120, "secondaire": "-" }
     }
   },
-
   {
     "id": "rdr2",
     "name": "Red Dead Redemption 2",
     "category": "game",
     "image": "/assets/rdr2-1200.webp",
     "platforms": {
-      "ps5": { "principal": "-", "secondaire": "-" },
-      "ps4": { "principal": "-", "secondaire": "-" }
+      "ps5": { "principal": 200, "secondaire": 150 },
+      "ps4": { "principal": 180, "secondaire": "-" }
     }
   },
-
   {
     "id": "eldenring",
     "name": "Elden Ring",
     "category": "game",
     "image": "/assets/eldenring-1200.webp",
     "platforms": {
-      "ps5": { "principal": "-", "secondaire": "-" },
-      "ps4": { "principal": "-", "secondaire": "-" }
+      "ps5": { "principal": 220, "secondaire": 170 },
+      "ps4": { "principal": 200, "secondaire": "-" }
     }
   },
-
   {
     "id": "ghost-yotei",
-    "name": "Ghost of Yotei",
+    "name": "Ghost Of Yotei",
     "category": "game",
     "image": "/assets/ghost-yotei-1200.webp",
     "platforms": {
       "ps5": { "principal": "-", "secondaire": "-" }
     }
   },
-
   {
     "id": "battlefield6",
     "name": "Battlefield 6",
@@ -116,9 +108,8 @@
       "ps5": { "principal": "-", "secondaire": "-" }
     }
   },
-
   {
-    "id": "blackmyth-wukong",
+    "id": "black-myth-wukong",
     "name": "Black Myth: Wukong",
     "category": "game",
     "image": "/assets/black-myth-wukong-1200.webp",
@@ -126,9 +117,8 @@
       "ps5": { "principal": "-", "secondaire": "-" }
     }
   },
-
   {
-    "id": "metal-gear-delta",
+    "id": "mgs-delta",
     "name": "Metal Gear Solid Delta: Snake Eater",
     "category": "game",
     "image": "/assets/mgs-delta-1200.webp",
@@ -136,7 +126,6 @@
       "ps5": { "principal": "-", "secondaire": "-" }
     }
   },
-
   {
     "id": "forza5",
     "name": "Forza Horizon 5",
@@ -146,7 +135,6 @@
       "ps5": { "principal": "-", "secondaire": "-" }
     }
   },
-
   {
     "id": "arc-raiders",
     "name": "Arc Raiders",
@@ -156,7 +144,6 @@
       "ps5": { "principal": "-", "secondaire": "-" }
     }
   },
-
   {
     "id": "ac-shadows",
     "name": "Assassin's Creed Shadows",
