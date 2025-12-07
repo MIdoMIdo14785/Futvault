@@ -6,38 +6,57 @@
 <title>FUTVault — Price list</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{ --bg1:#071025; --bg2:#0b1020; --muted:#9aa4bf; --accent:#ffb020; --accent2:#0b74ff; }
+  :root{
+    --bg1:#071025;
+    --bg2:#0b1020;
+    --muted:#9aa4bf;
+    --accent-soft:#7fb3ff;    /* soft blue for primary */
+    --secondary-soft:#9ad3c8; /* soft green/teal for secondary */
+    --card:#0f1724;
+  }
   *{box-sizing:border-box}
-  body{ margin:0; font-family:Inter,system-ui,Roboto,Arial; background:linear-gradient(180deg,var(--bg1),var(--bg2)); color:#e6eef9; min-height:100vh; }
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Roboto,Arial;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#e6eef9;
+    min-height:100vh;
+  }
   .wrap{max-width:1100px;margin:28px auto;padding:18px;}
   header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-  .logo{width:68px;height:68px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center}
+  .logo{width:68px;height:68px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c0ff);display:flex;align-items:center;justify-content:center}
   .logo img{width:100%;height:100%;object-fit:cover}
   h1{margin:0;font-size:20px}
   .lead{color:var(--muted);font-size:13px;margin-top:4px}
+
+  /* Controls */
   .controls{display:flex;gap:10px;margin:18px 0;align-items:center}
-  .search{flex:1;padding:12px;border-radius:10px;border:0;background:rgba(255,255,255,0.03)}
+  .search{flex:1;padding:12px;border-radius:10px;border:0;background:rgba(255,255,255,0.03);color:#fff}
+  .search::placeholder{color:rgba(255,255,255,0.5)}
   .select{padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
 
+  /* Grid / Cards */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:8px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6);display:flex;flex-direction:column;position:relative}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6);display:flex;flex-direction:column}
   .cover{width:100%;height:360px;object-fit:cover;display:block;background:#0b1220}
   .prices-below{display:flex;justify-content:space-between;align-items:flex-end;padding:12px 12px 6px 12px;gap:12px}
   .price-col{width:48%;display:flex;flex-direction:column;align-items:center}
-  .price-label{font-size:12px;color:var(--muted);margin-bottom:6px}
-  .price-primary{background:linear-gradient(90deg,#ffd8a8,#ffb020);color:#081025;padding:8px 12px;border-radius:10px;font-weight:800}
-  .price-secondary{background:rgba(255,255,255,0.06);color:var(--muted);padding:8px 12px;border-radius:10px;font-weight:700;margin-top:8px}
+  /* make PS labels prominent */
+  .price-label{font-size:13px;color:#fff;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px}
+  .price-row{display:flex;gap:8px;align-items:center;justify-content:center}
+  .price-primary{background:var(--accent-soft);color:#042038;padding:8px 12px;border-radius:10px;font-weight:800;min-width:120px;text-align:center}
+  .price-secondary{background:var(--secondary-soft);color:#042038;padding:8px 12px;border-radius:10px;font-weight:700;min-width:120px;text-align:center}
   .card-body{padding:8px 12px 18px 12px}
   .title{font-weight:800;font-size:15px;margin-bottom:6px}
   .meta{display:none} /* hide platform/sku */
   footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
 
+  /* Responsive: stack and keep labels visible */
   @media (max-width:720px){
     .cover{height:220px}
     .prices-below{flex-direction:column;align-items:stretch;gap:8px}
-    .price-col{width:100%;flex-direction:row;justify-content:center;gap:10px}
-    .price-label{display:none}
-    .price-secondary{margin-top:0}
+    .price-col{width:100%;flex-direction:column;align-items:center}
+    .price-row{justify-content:center}
   }
 </style>
 </head>
@@ -61,51 +80,101 @@
   </div>
 
 <script>
-const DATA_URL='data/games.json';
-let data=[];
+const DATA_URL = 'data/games.json';
+let data = [];
 
 async function fetchData(){
   try{
-    const r=await fetch(DATA_URL,{cache:'no-store'});
-    data=await r.json();
-    render();
+    const r = await fetch(DATA_URL, {cache: 'no-store'});
+    data = await r.json();
     populatePlatform();
+    render();
   }catch(e){
-    document.getElementById('grid').innerHTML='<div style="color:#ff6b6b">Erreur chargement data</div>';
+    document.getElementById('grid').innerHTML = '<div style="color:#ff6b6b">Erreur chargement data</div>';
   }
 }
+
+/* Populate platform filter:
+   - list platforms seen in data.platform (if present)
+   - also include PS5/PS4 if some item has prices.* non-empty
+*/
 function populatePlatform(){
-  const sel=document.getElementById('platform');
-  const platforms=[...new Set(data.map(x=>x.platform||'').filter(Boolean))].sort();
-  sel.innerHTML='<option value="">Toutes plateformes</option>'+platforms.map(p=>`<option value="${p}">${p}</option>`).join('');
-}
-function render(){
-  const q=document.getElementById('q').value.trim().toLowerCase();
-  const pf=document.getElementById('platform').value;
-  const grid=document.getElementById('grid');
-  const rows=data.filter(d=>{
-    if(pf && (d.platform||'').toLowerCase()!==pf.toLowerCase()) return false;
-    if(!q) return true;
-    return ((d.title||'')+' '+(d.platform||'')+' '+(d.sku||'')+' '+(d.notes||'')).toLowerCase().includes(q);
+  const sel = document.getElementById('platform');
+  const platforms = new Set();
+  data.forEach(item => {
+    if(item.platform) platforms.add(item.platform);
+    // add PS5/PS4 presence based on prices
+    if(item.prices){
+      if(item.prices.ps5 && (item.prices.ps5.primary || item.prices.ps5.secondary)) platforms.add('PS5');
+      if(item.prices.ps4 && (item.prices.ps4.primary || item.prices.ps4.secondary)) platforms.add('PS4');
+    }
   });
-  if(!rows.length){ grid.innerHTML='<div style="color:var(--muted)">Aucun résultat</div>'; return; }
-  grid.innerHTML=rows.map(r=>{
-    const ps5Pri = r.prices?.ps5?.primary || r.price_primary || '';
-    const ps5Sec = r.prices?.ps5?.secondary || r.price_secondary || '';
-    const ps4Pri = r.prices?.ps4?.primary || (r.platform==='PS4'? r.price_primary : '');
+  const arr = Array.from(platforms).sort();
+  sel.innerHTML = '<option value="">Toutes plateformes</option>' + arr.map(p => `<option value="${p}">${p}</option>`).join('');
+}
+
+/* Improved filter logic:
+   - if platform filter = "PS4", show items where:
+       * prices.ps4.primary or prices.ps4.secondary exists and non-empty
+       OR item.platform includes "PS4" (case-insensitive)
+*/
+function matchesPlatform(item, pf){
+  if(!pf) return true;
+  const pfLower = pf.toLowerCase();
+  // check explicit platform field
+  if(item.platform && String(item.platform).toLowerCase() === pfLower) return true;
+  // check prices object
+  if(item.prices){
+    if(pfLower === 'ps4' && item.prices.ps4){
+      if((item.prices.ps4.primary || '').trim() !== '' || (item.prices.ps4.secondary || '').trim() !== '') return true;
+    }
+    if(pfLower === 'ps5' && item.prices.ps5){
+      if((item.prices.ps5.primary || '').trim() !== '' || (item.prices.ps5.secondary || '').trim() !== '') return true;
+    }
+  }
+  // fallback: check title/sku containing platform token
+  if((item.title || '').toLowerCase().includes(pfLower)) return true;
+  if((item.sku || '').toLowerCase().includes(pfLower)) return true;
+  return false;
+}
+
+function render(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const pf = document.getElementById('platform').value;
+  const grid = document.getElementById('grid');
+  const rows = data.filter(item => {
+    if(!matchesPlatform(item, pf)) return false;
+    if(!q) return true;
+    const hay = ((item.title||'')+' '+(item.sku||'')+' '+(item.platform||'')+' '+JSON.stringify(item.prices||'')).toLowerCase();
+    return hay.includes(q);
+  });
+
+  if(!rows.length){
+    grid.innerHTML = '<div style="color:var(--muted)">Aucun résultat</div>';
+    return;
+  }
+
+  grid.innerHTML = rows.map(r => {
+    const ps5Pri = (r.prices && r.prices.ps5 && r.prices.ps5.primary) ? r.prices.ps5.primary : '';
+    const ps5Sec = (r.prices && r.prices.ps5 && r.prices.ps5.secondary) ? r.prices.ps5.secondary : '';
+    const ps4Pri = (r.prices && r.prices.ps4 && r.prices.ps4.primary) ? r.prices.ps4.primary : '';
     const img = r.image || 'assets/fc26.png';
     return `
       <div class="card">
-        <img class="cover" src="${img}" alt="${escapeHtml(r.title)}" loading="lazy" />
+        <img class="cover" src="${escapeHtml(img)}" alt="${escapeHtml(r.title)}" loading="lazy" />
         <div class="prices-below">
           <div class="price-col">
             <div class="price-label">PS5</div>
-            <div class="price-primary">${escapeHtml(ps5Pri || '—')} <div style="font-size:12px;color:var(--muted);margin-top:6px">Principal</div></div>
-            <div class="price-secondary">${escapeHtml(ps5Sec || '—')} <div style="font-size:12px;color:var(--muted);margin-top:6px">Secondaire</div></div>
+            <div class="price-row">
+              <div class="price-primary">${escapeHtml(ps5Pri || '—')}</div>
+              <div class="price-secondary">${escapeHtml(ps5Sec || '—')}</div>
+            </div>
           </div>
           <div class="price-col">
             <div class="price-label">PS4</div>
-            <div class="price-primary">${escapeHtml(ps4Pri || '—')}<div style="font-size:12px;color:var(--muted);margin-top:6px">Principal</div></div>
+            <div class="price-row">
+              <div class="price-primary">${escapeHtml(ps4Pri || '—')}</div>
+            </div>
           </div>
         </div>
         <div class="card-body">
@@ -115,10 +184,11 @@ function render(){
     `;
   }).join('');
 }
-function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-document.getElementById('q').addEventListener('input',render);
-document.getElementById('platform').addEventListener('change',render);
+function escapeHtml(s){ return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+document.getElementById('q').addEventListener('input', render);
+document.getElementById('platform').addEventListener('change', render);
 
 fetchData();
 </script>
