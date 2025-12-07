@@ -15,15 +15,15 @@
   }
   html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text)}
   .wrap{max-width:1180px;margin:28px auto;padding:18px}
-  header{display:flex;align-items:center;gap:18px;margin-bottom:18px}
-  .logo{width:58px;height:58px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c6ff);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .logo img{width:86%;height:86%;object-fit:cover;transform:scale(0.95)}
+  header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .logo{width:52px;height:52px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c6ff);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .logo img{width:84%;height:84%;object-fit:cover;transform:scale(0.86)}
   h1{margin:0;font-size:20px}
   .lead{color:var(--muted);font-size:13px;margin-top:4px}
   .controls{display:flex;gap:12px;margin:18px 0;align-items:center;justify-content:space-between;flex-wrap:wrap}
   .search{flex:1;display:flex;gap:8px;min-width:260px}
   input.searchbox{
-    flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);
+    flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);
     background:rgba(255,255,255,0.02);color:var(--text);box-shadow:0 4px 12px rgba(2,6,12,0.35);min-width:220px
   }
   select.platform{padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:none;color:var(--text)}
@@ -31,63 +31,77 @@
   .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(2,6,12,0.6);display:flex;flex-direction:column;gap:12px;min-height:520px;overflow:visible}
   .cover{width:100%;height:320px;border-radius:10px;background:linear-gradient(180deg,#021024,#02101a);display:flex;align-items:center;justify-content:center;overflow:hidden}
   .cover img{width:100%;height:100%;object-fit:cover;border-radius:8px}
-  .title{font-weight:700;font-size:16px;margin-top:6px}
+  .title{font-weight:700;font-size:16px;margin-top:6px;color:var(--text)}
   .durations{display:flex;gap:8px;justify-content:center;margin:4px 0}
   .durations button{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:var(--text);cursor:pointer}
-  /* ---------- FIX PRICES LAYOUT ---------- */
-  .plat{
-    background:var(--soft);
-    border-radius:12px;
-    padding:18px 14px;
-    width: 100%;
-    max-width: 240px;
-    min-width: 160px;
-    box-sizing: border-box;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    align-items:center;
-    justify-content:center;
-    margin: 0 auto;
-    position: relative;
-  }
-  .prices{
-    display:flex;
-    gap:14px;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:nowrap;
-    width:100%;
-    box-sizing:border-box;
-  }
-  .price{
-    display:inline-block;
-    padding:12px 18px;
-    border-radius:12px;
-    background:var(--primary);
-    color:#072033;
-    font-weight:700;
-    min-width:110px;
-    max-width:100%;
-    box-sizing:border-box;
-    text-align:center;
-    white-space:nowrap;
-  }
-  .price.secondary{ background:var(--secondary); color:#072033; }
-  .pssingle{ max-width:240px; margin: 0 auto; }
-  .plat h4{margin:0;font-size:14px;color:var(--muted)}
-  .label{font-size:13px;color:var(--muted);margin-top:6px}
-  .ps-single-stack{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
-  @media(max-width:520px){
-    .cover{height:220px}
-    .plat{ max-width: 100%; min-width: 120px; padding:12px }
-    .price{ min-width:90px; padding:10px 12px }
-    .prices{ gap:8px }
-    .grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-  }
-  :root.light{--bg1:#e9f2f4;--bg2:#e6eef3;--card:#ffffff;--soft:#f6f7f9;--text:#0b1724;--muted:#6b7380}
-  .error{color:#ff6b6b;font-weight:700}
+
+/* ---------- LAYOUT FIX FINAL ---------- */
+.logo{width:52px;height:52px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c6ff);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo img{width:84%;height:84%;object-fit:cover;transform:scale(0.86)}
+
+.plat{
+  background:var(--soft);
+  border-radius:12px;
+  padding:18px 14px;
+  width: 100%;
+  max-width: 360px;
+  min-width: 140px;
+  min-height: 150px;
+  box-sizing: border-box;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.platforms{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  justify-content:center;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.prices{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:nowrap;
+  width:100%;
+  box-sizing:border-box;
+}
+.price{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:12px;
+  background:var(--primary);
+  color:#072033;
+  font-weight:700;
+  min-width:110px;
+  max-width:100%;
+  box-sizing:border-box;
+  text-align:center;
+  white-space:nowrap;
+}
+.price.secondary{ background:var(--secondary); color:#072033; }
+
+.ps-single-stack{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%}
+.plat h4{margin:0;font-size:14px;color:var(--muted)}
+.label{font-size:13px;color:var(--muted);margin-top:6px}
+
+@media(max-width:800px){
+  .platforms{flex-direction:column;gap:18px}
+  .plat{max-width:100%}
+  .cover{height:220px}
+}
+:root.light{--bg1:#e9f2f4;--bg2:#e6eef3;--card:#ffffff;--soft:#f6f7f9;--text:#0b1724;--muted:#6b7380}
+.error{color:#ff6b6b;font-weight:700}
 </style>
 </head>
 <body>
@@ -122,6 +136,14 @@
   </div>
 
 <script>
+/* helper: fetch with timeout */
+function fetchWithTimeout(url, ms=8000){
+  return Promise.race([
+    fetch(url, {cache: "no-store"}),
+    new Promise((_, rej) => setTimeout(()=>rej(new Error('timeout')), ms))
+  ]);
+}
+
 (async function(){
   const grid = document.getElementById('grid');
   const msg = document.getElementById('message');
@@ -130,18 +152,37 @@
   const modeBtn = document.getElementById('modeToggle');
   let data = [], duration = '12m';
 
+  // fallback sample data (used if fetch fails)
+  const sampleData = [
+    { "id":"psplus-essential","name":"PS+ Essential","category":"subscription","image":"assets/psplus-essential.webp","prices":{"ps5":{"principal":{"6m":450,"12m":500},"secondaire":{"6m":90,"12m":100}},"ps4":{"principal":{"6m":220,"12m":250},"secondaire":{"6m":"-","12m":"-"}}} },
+    { "id":"psplus-extra","name":"PS+ Extra","category":"subscription","image":"assets/psplus-extra.webp","prices":{"ps5":{"principal":{"6m":280,"12m":300},"secondaire":{"6m":"-","12m":"-"}},"ps4":{"principal":{"6m":"-","12m":"-"},"secondaire":null}} },
+    { "id":"psplus-premium","name":"PS+ Premium","category":"subscription","image":"assets/psplus-premium.webp","prices":{"ps5":{"principal":{"6m":360,"12m":380},"secondaire":{"6m":"-","12m":"-"}},"ps4":{"principal":{"6m":"-","12m":"-"},"secondaire":null}} },
+
+    { "id":"fc26","name":"EA SPORTS FC 26","category":"game","image":"assets/fc26-1200.webp","platforms":{"ps5":{"principal":250,"secondaire":200},"ps4":{"principal":200,"secondaire":"-"}} },
+    { "id":"eldenring","name":"Elden Ring","category":"game","image":"assets/eldenring-1200.webp","platforms":{"ps5":{"principal":220,"secondaire":170},"ps4":{"principal":200,"secondaire":"-"}} },
+    { "id":"gta5","name":"GTA V","category":"game","image":"assets/gta5-1200.webp","platforms":{"ps5":{"principal":250,"secondaire":"-"},"ps4":{"principal":200,"secondaire":"-"}} },
+    { "id":"rdr2","name":"Red Dead Redemption II","category":"game","image":"assets/rdr2-1200.webp","platforms":{"ps5":{"principal":240,"secondaire":"-"},"ps4":{"principal":210,"secondaire":"-"}} },
+    { "id":"ghostofyotei","name":"Ghost Of Yotei","category":"game","image":"assets/ghost-yotei-1200.webp","platforms":{"ps5":{"principal":220,"secondaire":"-"}} },
+    { "id":"forzahorizon5","name":"Forza Horizon 5","category":"game","image":"assets/forza5-1200.webp","platforms":{"ps5":{"principal":230,"secondaire":"-"},"ps4":{"principal":200,"secondaire":"-"}} }
+  ];
+
   try{
-    const res = await fetch('data/games.json', {cache: "no-store"});
-    if(!res.ok) throw new Error('JSON fetch failed: ' + res.status);
+    const res = await fetchWithTimeout('data/games.json', 7000);
+    if(!res.ok) throw new Error('HTTP ' + res.status);
     data = await res.json();
+    // if data is not an array, fallback
+    if(!Array.isArray(data) || data.length === 0){
+      console.warn('games.json invalid or empty — using sample data');
+      data = sampleData;
+    }
   } catch(e){
-    msg.innerHTML = '<div class="error">Erreur chargement data</div>';
-    console.error(e);
-    return;
+    console.warn('fetch failed:', e.message || e);
+    msg.innerHTML = '<div class="error">Erreur chargement data — affichage de test (sample data)</div>';
+    data = sampleData;
   }
 
   function formatPrice(v){
-    if(v === undefined || v === null || v === '-') return '-';
+    if(v === undefined || v === null || v === '-' || v === "--") return '-';
     return (typeof v === 'number' ? `${v} DHS` : v);
   }
 
@@ -159,13 +200,15 @@
     const box = document.createElement('div'); box.className='plat';
     const h = document.createElement('h4'); h.textContent = label; box.appendChild(h);
 
+    // read price for selected duration (duration variable is '6m' or '12m')
     let primary = '-';
     if(obj && obj.principal && obj.principal[duration] !== undefined) primary = obj.principal[duration];
     let secondary = '-';
     if(obj && obj.secondaire && obj.secondaire[duration] !== undefined) secondary = obj.secondaire[duration];
 
-    // For subscriptions, we show primary and secondary side-by-side if both exist; otherwise hide secondary
-    const pricesRow = document.createElement('div'); pricesRow.className = 'prices';
+    // vertical stack for subscription plat (principal and secondary)
+    const stack = document.createElement('div');
+    stack.className = 'ps-single-stack';
 
     const primWrap = document.createElement('div');
     primWrap.style.display = 'flex';
@@ -176,6 +219,8 @@
     const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
     primWrap.appendChild(primaryEl); primWrap.appendChild(l1);
 
+    stack.appendChild(primWrap);
+
     const secWrap = document.createElement('div');
     secWrap.style.display = 'flex';
     secWrap.style.flexDirection = 'column';
@@ -185,12 +230,11 @@
     const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
     secWrap.appendChild(secondaryEl); secWrap.appendChild(l2);
 
-    pricesRow.appendChild(primWrap);
-    pricesRow.appendChild(secWrap);
-    box.appendChild(pricesRow);
+    stack.appendChild(secWrap);
 
-    if(secondary === '-' || secondary === null){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
+    if(secondary === '-' || secondary === null || secondary === undefined){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
 
+    box.appendChild(stack);
     return box;
   }
 
@@ -226,24 +270,9 @@
 
     box.appendChild(container);
 
-    if(secondary === '-' || secondary === null){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
+    if(secondary === '-' || secondary === null || secondary === undefined){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
 
     return box;
-  }
-
-  function buildGameBoxSide(labelLeft, leftObj, labelRight, rightObj){
-    // create a wrapper that looks like two plat boxes horizontally for consistent visual when both platforms exist
-    const wrapper = document.createElement('div');
-    wrapper.style.display = 'flex';
-    wrapper.style.gap = '12px';
-    wrapper.style.justifyContent = 'center';
-    wrapper.style.width = '100%';
-
-    const left = buildGameBoxSingle(labelLeft, leftObj);
-    const right = buildGameBoxSingle(labelRight, rightObj);
-    wrapper.appendChild(left);
-    wrapper.appendChild(right);
-    return wrapper;
   }
 
   function buildCard(item){
@@ -275,22 +304,30 @@
     const platformsWrap = document.createElement('div'); platformsWrap.className='platforms';
 
     if(item.category === 'subscription'){
-      const ps5 = item.prices.ps5 || {};
-      const ps4 = item.prices.ps4 || {};
+      // vertical stack: PS5 above PS4
+      platformsWrap.style.flexDirection = 'column';
+      platformsWrap.style.gap = '14px';
+      const ps5 = item.prices && item.prices.ps5 ? item.prices.ps5 : {};
+      const ps4 = item.prices && item.prices.ps4 ? item.prices.ps4 : {};
       platformsWrap.appendChild(buildSubscriptionBox('PS5', ps5));
       platformsWrap.appendChild(buildSubscriptionBox('PS4', ps4));
     } else {
       const hasPs5 = item.platforms && item.platforms.ps5;
       const hasPs4 = item.platforms && item.platforms.ps4;
       if(hasPs5 && hasPs4){
-        // side-by-side two plat boxes
-        platformsWrap.appendChild(buildGameBoxSide('PS5', item.platforms.ps5, 'PS4', item.platforms.ps4));
+        // side-by-side like Elden Ring
+        platformsWrap.style.flexDirection = 'row';
+        platformsWrap.appendChild(buildGameBoxSingle('PS5', item.platforms.ps5));
+        platformsWrap.appendChild(buildGameBoxSingle('PS4', item.platforms.ps4));
       } else if(hasPs5){
-        const b = buildGameBoxSingle('PS5', item.platforms.ps5);
-        platformsWrap.appendChild(b);
+        // PS5-only -> primary and secondary stacked
+        platformsWrap.style.flexDirection = 'column';
+        platformsWrap.style.alignItems = 'center';
+        platformsWrap.appendChild(buildGameBoxSingle('PS5', item.platforms.ps5));
       } else if(hasPs4){
-        const b = buildGameBoxSingle('PS4', item.platforms.ps4);
-        platformsWrap.appendChild(b);
+        platformsWrap.style.flexDirection = 'column';
+        platformsWrap.style.alignItems = 'center';
+        platformsWrap.appendChild(buildGameBoxSingle('PS4', item.platforms.ps4));
       } else {
         const none = document.createElement('div'); none.textContent='No platform info'; none.style.color = 'var(--muted)'; platformsWrap.appendChild(none);
       }
