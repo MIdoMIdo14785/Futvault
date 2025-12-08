@@ -1,385 +1,175 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>FUTVault — Price list</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg1:#071025; --bg2:#061226;
-    --card:#0b1724; --muted:#9aa4bf; --text:#e6eef9;
-    --primary:#a8d4ff; --secondary:#cfe6df;
-    --soft:#0f1b26;
-    --radius:14px;
-  }
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text)}
-  .wrap{max-width:1180px;margin:28px auto;padding:18px}
-  header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-  .logo{width:52px;height:52px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c6ff);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .logo img{width:84%;height:84%;object-fit:cover;transform:scale(0.86)}
-  h1{margin:0;font-size:20px}
-  .lead{color:var(--muted);font-size:13px;margin-top:4px}
-  .controls{display:flex;gap:12px;margin:18px 0;align-items:center;justify-content:space-between;flex-wrap:wrap}
-  .search{flex:1;display:flex;gap:8px;min-width:260px}
-  input.searchbox{
-    flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);
-    background:rgba(255,255,255,0.02);color:var(--text);box-shadow:0 4px 12px rgba(2,6,12,0.35);min-width:220px
-  }
-  select.platform{padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:none;color:var(--text)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-top:18px;align-items:start}
-  .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(2,6,12,0.6);display:flex;flex-direction:column;gap:12px;min-height:520px;overflow:visible}
-  .cover{width:100%;height:320px;border-radius:10px;background:linear-gradient(180deg,#021024,#02101a);display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .cover img{width:100%;height:100%;object-fit:cover;border-radius:8px}
-  .title{font-weight:700;font-size:16px;margin-top:6px;color:var(--text)}
-  .durations{display:flex;gap:8px;justify-content:center;margin:4px 0}
-  .durations button{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:var(--text);cursor:pointer}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FUTVault — Catalogue</title>
+  <meta name="description" content="Catalogue FutVault — comptes, abonnements et jeux.">
+  <style>
+    :root{
+      --bg:#06151a; --card:#0e2a33; --muted:#9fb3bd; --accent:#bfe1ff; --accent-2:#dff6ea; --radius:14px;
+      --pill-padding:12px 22px; --gap:16px; --card-padding:22px;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#031219 0%, #071922 100%);color:#d6eef6}
+    .wrap{max-width:1100px;margin:28px auto;padding:18px}
 
-/* ---------- LAYOUT FIX FINAL ---------- */
-.logo{width:52px;height:52px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#0b74ff,#00c6ff);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo img{width:84%;height:84%;object-fit:cover;transform:scale(0.86)}
+    /* Header */
+    header{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{height:38px;width:auto;border-radius:10px;object-fit:cover}
+    .site-title{font-weight:800;font-size:20px;letter-spacing:0.4px}
 
-.plat{
-  background:var(--soft);
-  border-radius:12px;
-  padding:18px 14px;
-  width: 100%;
-  max-width: 360px;
-  min-width: 140px;
-  min-height: 150px;
-  box-sizing: border-box;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:center;
-  justify-content:center;
-  margin: 0 auto;
-  position: relative;
-}
+    /* grid */
+    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:18px}
+    @media(min-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
 
-.platforms{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  justify-content:center;
-  width:100%;
-  box-sizing:border-box;
-}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));padding:var(--card-padding);border-radius:18px;box-shadow:0 6px 18px rgba(2,10,14,0.6)}
 
-.prices{
-  display:flex;
-  gap:14px;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:nowrap;
-  width:100%;
-  box-sizing:border-box;
-}
-.price{
-  display:inline-block;
-  padding:12px 18px;
-  border-radius:12px;
-  background:var(--primary);
-  color:#072033;
-  font-weight:700;
-  min-width:110px;
-  max-width:100%;
-  box-sizing:border-box;
-  text-align:center;
-  white-space:nowrap;
-}
-.price.secondary{ background:var(--secondary); color:#072033; }
+    .hero-img{width:100%;height:260px;border-radius:12px;object-fit:cover;display:block}
+    .product-title{margin-top:12px;font-weight:700}
 
-.ps-single-stack{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%}
-.plat h4{margin:0;font-size:14px;color:var(--muted)}
-.label{font-size:13px;color:var(--muted);margin-top:6px}
+    /* platform price layout: side-by-side like FC26 */
+    .platforms{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .platform{flex:1 1 48%;min-width:160px;background:rgba(0,0,0,0.18);padding:18px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:8px}
+    .platform .label{font-size:13px;color:var(--muted)}
+    .price-pill{background:var(--accent);color:#042233;font-weight:800;padding:12px 22px;border-radius:16px;font-size:20px;box-shadow:0 6px 14px rgba(11,36,50,0.25)}
+    .price-pill.secondary{background:var(--accent-2);color:#053233;font-weight:800}
+    .small-muted{font-size:13px;color:var(--muted);margin-top:6px}
 
-@media(max-width:800px){
-  .platforms{flex-direction:column;gap:18px}
-  .plat{max-width:100%}
-  .cover{height:220px}
-}
-:root.light{--bg1:#e9f2f4;--bg2:#e6eef3;--card:#ffffff;--soft:#f6f7f9;--text:#0b1724;--muted:#6b7380}
-.error{color:#ff6b6b;font-weight:700}
-</style>
+    /* PS+ toggle buttons centered */
+    .toggles{display:flex;gap:10px;margin-top:6px;justify-content:center}
+    .toggle-btn{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:12px;cursor:pointer;color:var(--muted);transition:all .18s ease}
+    .toggle-btn:hover{transform:translateY(-2px)}
+    .toggle-btn.active{background:linear-gradient(180deg,#bfe1ff,#98d8ff);color:#042233;border-color:rgba(0,0,0,0.08);box-shadow:0 8px 28px rgba(11,36,50,0.28);filter:drop-shadow(0 6px 18px rgba(0,150,255,0.08))}
+
+    /* small footer */
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+
+    /* loader avoidance - simple error box */
+    .error{background:#220a0a;padding:12px;border-radius:10px;color:#ffdede}
+
+    /* general utilities */
+    .hidden{display:none}
+    a{color:inherit}
+  </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="logo"><img src="assets/logo.png" alt="FUTVault logo" id="siteLogo" onerror="this.style.display='none'"></div>
-      <div>
-        <h1>FUTVault — Price list</h1>
-        <div class="lead" id="leadText">Catalogue professionnel</div>
-      </div>
-      <div style="flex:1"></div>
-      <div style="display:flex;gap:12px;align-items:center">
-        <button id="modeToggle" style="padding:8px 12px;border-radius:12px;border:none;background:rgba(255,255,255,0.02);color:var(--text);cursor:pointer">Mode clair</button>
+      <div class="logo">
+        <!-- Use .webp images for smoother site (you asked) -->
+        <img src="images/futvault-logo.webp" alt="FutVault logo" id="site-logo">
+        <div>
+          <div class="site-title">FUTVault</div>
+        </div>
       </div>
     </header>
 
-    <div class="controls">
-      <div class="search">
-        <input id="searchInput" class="searchbox" placeholder="Rechercher (titre, SKU, keywords)..." />
-      </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <select id="platformFilter" class="platform">
-          <option value="all">Toutes plateformes</option>
-          <option value="ps5">PS5</option>
-          <option value="ps4">PS4</option>
-        </select>
-      </div>
-    </div>
+    <main id="main-content">
+      <!-- Subscription block with centered 6/12 buttons and working toggles -->
+      <section class="card" id="psplus-essential">
+        <h3>PS+ Essential</h3>
+        <div class="toggles" data-target="psplus-essential-prices">
+          <button class="toggle-btn active" data-duration="6">6 mois</button>
+          <button class="toggle-btn" data-duration="12">12 mois</button>
+        </div>
 
-    <div id="message" style="margin-top:6px"></div>
-    <div id="grid" class="grid"></div>
+        <div id="psplus-essential-prices" style="margin-top:14px">
+          <div class="platforms">
+            <div class="platform">
+              <div class="label">PS5</div>
+              <div class="price-pill" data-price-6="500" data-price-12="900">500 DHS</div>
+              <div class="small-muted">Principal</div>
+              <div class="secondary-wrap"><div class="price-pill secondary" data-price-6="100" data-price-12="180">100 DHS</div>
+                <div class="small-muted">Secondaire</div>
+              </div>
+            </div>
+
+            <div class="platform">
+              <div class="label">PS4</div>
+              <div class="price-pill" data-price-6="250" data-price-12="480">250 DHS</div>
+              <div class="small-muted">Principal</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Catalogue grid populated from inline JSON (webp images) -->
+      <section style="margin-top:18px">
+        <h3 style="margin-bottom:8px">Catalogue</h3>
+        <div id="catalog" class="grid"></div>
+      </section>
+
+      <div id="error-box" class="hidden"></div>
+    </main>
+
+    <footer>
+      © FutVault — Assure-toi d'uploader les images en .webp dans /images pour un rendu smooth.
+    </footer>
   </div>
 
-<script>
-/* helper: fetch with timeout */
-function fetchWithTimeout(url, ms=8000){
-  return Promise.race([
-    fetch(url, {cache: "no-store"}),
-    new Promise((_, rej) => setTimeout(()=>rej(new Error('timeout')), ms))
-  ]);
-}
+  <script>
+    // ---------- Inline JSON (webp image names) ----------
+    const products = [
+      {"id":"fc26","title":"EA SPORTS FC 26","image":"images/fc26.webp","platforms":[{"name":"PS5","principal":"250","secondaire":"200"},{"name":"PS4","principal":"200"}]},
+      {"id":"rdr2","title":"Red Dead Redemption II","image":"images/rdr2.webp","platforms":[{"name":"PS5","principal":"240","secondaire":"180"},{"name":"PS4","principal":"210"}]},
+      {"id":"ac","title":"Assassin's Creed Valhalla","image":"images/acv.webp","platforms":[{"name":"PS5","principal":"220","secondaire":"170"},{"name":"PS4","principal":"190"}]},
+      {"id":"bf","title":"Battlefield (série)","image":"images/bf.webp","platforms":[{"name":"PS5","principal":"230","secondaire":"180"},{"name":"PS4","principal":"195"}]},
+      {"id":"cod","title":"Call of Duty (dernier)","image":"images/cod.webp","platforms":[{"name":"PS5","principal":"260","secondaire":"210"},{"name":"PS4","principal":"210"}]}
+    ];
 
-(async function(){
-  const grid = document.getElementById('grid');
-  const msg = document.getElementById('message');
-  const search = document.getElementById('searchInput');
-  const filter = document.getElementById('platformFilter');
-  const modeBtn = document.getElementById('modeToggle');
-  let data = [], duration = '12m';
-
-  // fallback sample data (used if fetch fails)
-  const sampleData = [
-    { "id":"psplus-essential","name":"PS+ Essential","category":"subscription","image":"assets/psplus-essential.webp","prices":{"ps5":{"principal":{"6m":450,"12m":500},"secondaire":{"6m":90,"12m":100}},"ps4":{"principal":{"6m":220,"12m":250},"secondaire":{"6m":"-","12m":"-"}}} },
-    { "id":"psplus-extra","name":"PS+ Extra","category":"subscription","image":"assets/psplus-extra.webp","prices":{"ps5":{"principal":{"6m":280,"12m":300},"secondaire":{"6m":"-","12m":"-"}},"ps4":{"principal":{"6m":"-","12m":"-"},"secondaire":null}} },
-    { "id":"psplus-premium","name":"PS+ Premium","category":"subscription","image":"assets/psplus-premium.webp","prices":{"ps5":{"principal":{"6m":360,"12m":380},"secondaire":{"6m":"-","12m":"-"}},"ps4":{"principal":{"6m":"-","12m":"-"},"secondaire":null}} },
-
-    { "id":"fc26","name":"EA SPORTS FC 26","category":"game","image":"assets/fc26-1200.webp","platforms":{"ps5":{"principal":250,"secondaire":200},"ps4":{"principal":200,"secondaire":"-"}} },
-    { "id":"eldenring","name":"Elden Ring","category":"game","image":"assets/eldenring-1200.webp","platforms":{"ps5":{"principal":220,"secondaire":170},"ps4":{"principal":200,"secondaire":"-"}} },
-    { "id":"gta5","name":"GTA V","category":"game","image":"assets/gta5-1200.webp","platforms":{"ps5":{"principal":250,"secondaire":"-"},"ps4":{"principal":200,"secondaire":"-"}} },
-    { "id":"rdr2","name":"Red Dead Redemption II","category":"game","image":"assets/rdr2-1200.webp","platforms":{"ps5":{"principal":240,"secondaire":"-"},"ps4":{"principal":210,"secondaire":"-"}} },
-    { "id":"ghostofyotei","name":"Ghost Of Yotei","category":"game","image":"assets/ghost-yotei-1200.webp","platforms":{"ps5":{"principal":220,"secondaire":"-"}} },
-    { "id":"forzahorizon5","name":"Forza Horizon 5","category":"game","image":"assets/forza5-1200.webp","platforms":{"ps5":{"principal":230,"secondaire":"-"},"ps4":{"principal":200,"secondaire":"-"}} }
-  ];
-
-  try{
-    const res = await fetchWithTimeout('data/games.json', 7000);
-    if(!res.ok) throw new Error('HTTP ' + res.status);
-    data = await res.json();
-    // if data is not an array, fallback
-    if(!Array.isArray(data) || data.length === 0){
-      console.warn('games.json invalid or empty — using sample data');
-      data = sampleData;
-    }
-  } catch(e){
-    console.warn('fetch failed:', e.message || e);
-    msg.innerHTML = '<div class="error">Erreur chargement data — affichage de test (sample data)</div>';
-    data = sampleData;
-  }
-
-  function formatPrice(v){
-    if(v === undefined || v === null || v === '-' || v === "--") return '-';
-    return (typeof v === 'number' ? `${v} DHS` : v);
-  }
-
-  function createPriceElement(value, isSecondary=false){
-    const el = document.createElement('div');
-    el.className = 'price' + (isSecondary ? ' secondary' : '');
-    el.textContent = formatPrice(value);
-    el.style.minWidth = '110px';
-    el.style.boxSizing = 'border-box';
-    el.style.textAlign = 'center';
-    return el;
-  }
-
-  function buildSubscriptionBox(label, obj){
-    const box = document.createElement('div'); box.className='plat';
-    const h = document.createElement('h4'); h.textContent = label; box.appendChild(h);
-
-    // read price for selected duration (duration variable is '6m' or '12m')
-    let primary = '-';
-    if(obj && obj.principal && obj.principal[duration] !== undefined) primary = obj.principal[duration];
-    let secondary = '-';
-    if(obj && obj.secondaire && obj.secondaire[duration] !== undefined) secondary = obj.secondaire[duration];
-
-    // vertical stack for subscription plat (principal and secondary)
-    const stack = document.createElement('div');
-    stack.className = 'ps-single-stack';
-
-    const primWrap = document.createElement('div');
-    primWrap.style.display = 'flex';
-    primWrap.style.flexDirection = 'column';
-    primWrap.style.alignItems = 'center';
-    primWrap.style.gap = '6px';
-    const primaryEl = createPriceElement(primary, false);
-    const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
-    primWrap.appendChild(primaryEl); primWrap.appendChild(l1);
-
-    stack.appendChild(primWrap);
-
-    const secWrap = document.createElement('div');
-    secWrap.style.display = 'flex';
-    secWrap.style.flexDirection = 'column';
-    secWrap.style.alignItems = 'center';
-    secWrap.style.gap = '6px';
-    const secondaryEl = createPriceElement(secondary, true);
-    const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
-    secWrap.appendChild(secondaryEl); secWrap.appendChild(l2);
-
-    stack.appendChild(secWrap);
-
-    if(secondary === '-' || secondary === null || secondary === undefined){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
-
-    box.appendChild(stack);
-    return box;
-  }
-
-  function buildGameBoxSingle(label, obj){
-    const box = document.createElement('div'); box.className='plat pssingle';
-    const h = document.createElement('h4'); h.textContent = label; box.appendChild(h);
-
-    // primary
-    let primary = (obj && obj.principal !== undefined) ? obj.principal : '-';
-    const primWrap = document.createElement('div');
-    primWrap.style.display = 'flex';
-    primWrap.style.flexDirection = 'column';
-    primWrap.style.alignItems = 'center';
-    primWrap.style.gap = '6px';
-    const primaryEl = createPriceElement(primary, false);
-    const l1 = document.createElement('div'); l1.className='label'; l1.textContent='Principal';
-    primWrap.appendChild(primaryEl); primWrap.appendChild(l1);
-
-    // secondary (stacked below)
-    let secondary = (obj && obj.secondaire !== undefined) ? obj.secondaire : '-';
-    const secWrap = document.createElement('div');
-    secWrap.style.display = 'flex';
-    secWrap.style.flexDirection = 'column';
-    secWrap.style.alignItems = 'center';
-    secWrap.style.gap = '6px';
-    const secondaryEl = createPriceElement(secondary, true);
-    const l2 = document.createElement('div'); l2.className='label'; l2.textContent='Secondaire';
-    secWrap.appendChild(secondaryEl); secWrap.appendChild(l2);
-
-    const container = document.createElement('div'); container.className='ps-single-stack';
-    container.appendChild(primWrap);
-    container.appendChild(secWrap);
-
-    box.appendChild(container);
-
-    if(secondary === '-' || secondary === null || secondary === undefined){ secondaryEl.style.visibility='hidden'; l2.style.visibility='hidden'; }
-
-    return box;
-  }
-
-  function buildCard(item){
-    const card = document.createElement('div'); card.className = 'card';
-
-    const cover = document.createElement('div'); cover.className='cover';
-    const img = document.createElement('img');
-    img.src = item.image || 'assets/placeholder-1200.webp';
-    img.alt = item.name;
-    img.onerror = function(){ this.src = 'assets/placeholder-1200.webp'; }
-    cover.appendChild(img);
-    card.appendChild(cover);
-
-    const title = document.createElement('div'); title.className='title'; title.textContent = item.name;
-    card.appendChild(title);
-
-    const durWrap = document.createElement('div'); durWrap.className='durations';
-    if(item.category === 'subscription'){
-      const b6 = document.createElement('button'); b6.textContent='6 mois';
-      const b12 = document.createElement('button'); b12.textContent='12 mois';
-      b6.onclick = ()=>{ duration='6m'; render(); };
-      b12.onclick = ()=>{ duration='12m'; render(); };
-      durWrap.appendChild(b6); durWrap.appendChild(b12);
-      card.appendChild(durWrap);
-    } else {
-      const spacer = document.createElement('div'); spacer.style.height='6px'; card.appendChild(spacer);
+    // ---------- Render catalogue (safe, no endless fetch) ----------
+    const catalog = document.getElementById('catalog');
+    function renderCatalog(){
+      catalog.innerHTML = '';
+      products.forEach(p=>{
+        const el = document.createElement('article'); el.className='card';
+        el.innerHTML = `
+          <img class="hero-img" src="${p.image}" alt="${p.title}">
+          <div class="product-title">${p.title}</div>
+          <div class="platforms">${p.platforms.map(pl=>`
+            <div class="platform">
+              <div class="label">${pl.name}</div>
+              <div class="price-pill">${pl.principal} DHS</div>
+              <div class="small-muted">Principal</div>
+              ${pl.secondaire ? `<div class="secondary-wrap"><div class="price-pill secondary">${pl.secondaire} DHS</div><div class="small-muted">Secondaire</div></div>` : ''}
+            </div>
+          `).join('')}</div>
+        `;
+        catalog.appendChild(el);
+      })
     }
 
-    const platformsWrap = document.createElement('div'); platformsWrap.className='platforms';
-
-    if(item.category === 'subscription'){
-      // vertical stack: PS5 above PS4
-      platformsWrap.style.flexDirection = 'column';
-      platformsWrap.style.gap = '14px';
-      const ps5 = item.prices && item.prices.ps5 ? item.prices.ps5 : {};
-      const ps4 = item.prices && item.prices.ps4 ? item.prices.ps4 : {};
-      platformsWrap.appendChild(buildSubscriptionBox('PS5', ps5));
-      platformsWrap.appendChild(buildSubscriptionBox('PS4', ps4));
-    } else {
-      const hasPs5 = item.platforms && item.platforms.ps5;
-      const hasPs4 = item.platforms && item.platforms.ps4;
-      if(hasPs5 && hasPs4){
-        // side-by-side like Elden Ring
-        platformsWrap.style.flexDirection = 'row';
-        platformsWrap.appendChild(buildGameBoxSingle('PS5', item.platforms.ps5));
-        platformsWrap.appendChild(buildGameBoxSingle('PS4', item.platforms.ps4));
-      } else if(hasPs5){
-        // PS5-only -> primary and secondary stacked
-        platformsWrap.style.flexDirection = 'column';
-        platformsWrap.style.alignItems = 'center';
-        platformsWrap.appendChild(buildGameBoxSingle('PS5', item.platforms.ps5));
-      } else if(hasPs4){
-        platformsWrap.style.flexDirection = 'column';
-        platformsWrap.style.alignItems = 'center';
-        platformsWrap.appendChild(buildGameBoxSingle('PS4', item.platforms.ps4));
-      } else {
-        const none = document.createElement('div'); none.textContent='No platform info'; none.style.color = 'var(--muted)'; platformsWrap.appendChild(none);
-      }
+    // initial render
+    try{ renderCatalog(); }
+    catch(e){
+      const box = document.getElementById('error-box'); box.className='error'; box.textContent='Erreur d\'affichage: '+e.message;
     }
 
-    card.appendChild(platformsWrap);
-    return card;
-  }
-
-  function render(){
-    grid.innerHTML = '';
-    msg.innerHTML = '';
-    const q = search.value.trim().toLowerCase();
-    const platFilter = filter.value;
-    let shown = 0;
-
-    for(const item of data){
-      if(platFilter !== 'all'){
-        if(item.category === 'subscription'){
-          if(!item.prices || !item.prices[platFilter]) continue;
-        } else {
-          if(!item.platforms || !item.platforms[platFilter]) continue;
+    // ---------- Toggles behaviour for subscriptions ----------
+    document.querySelectorAll('.toggles').forEach(group=>{
+      const targetId = group.dataset.target;
+      group.addEventListener('click', e=>{
+        const btn = e.target.closest('.toggle-btn'); if(!btn) return;
+        group.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const duration = btn.dataset.duration; // '6' or '12'
+        const container = document.getElementById(targetId);
+        if(container){
+          container.querySelectorAll('[data-price-6]').forEach(el=>{
+            const val = el.dataset['price'+duration];
+            if(val) el.textContent = val + ' DHS';
+          });
         }
-      }
+      });
+    });
 
-      if(q){
-        const inName = item.name && item.name.toLowerCase().includes(q);
-        const inId = item.id && item.id.toLowerCase().includes(q);
-        const insideKeywords = (item.keywords || []).join(' ').toLowerCase().includes(q);
-        if(!(inName || inId || insideKeywords)) continue;
-      }
+    // 1) Logo tweak if too large
+    const logo = document.getElementById('site-logo');
+    if(logo){ logo.style.height='36px'; logo.style.opacity='0.98'; }
 
-      const card = buildCard(item);
-      grid.appendChild(card);
-      shown++;
-    }
-
-    if(shown === 0) msg.innerHTML = '<div class="error">Aucun résultat</div>';
-  }
-
-  render();
-
-  search.addEventListener('input', ()=>render());
-  filter.addEventListener('change', ()=>render());
-
-  modeBtn.addEventListener('click', ()=>{
-    document.documentElement.classList.toggle('light');
-    const isLight = document.documentElement.classList.contains('light');
-    modeBtn.textContent = isLight ? 'Mode nuit' : 'Mode clair';
-  });
-
-})();
-</script>
+    console.info('FutVault: HTML updated (uses .webp). Replace inline products with your JSON raw if needed.');
+  </script>
 </body>
 </html>
